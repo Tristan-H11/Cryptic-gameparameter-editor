@@ -1,46 +1,45 @@
 device:
   filesystem:
-    maxcharsperfile: "maxcharsperfile This is a sample description text"
-    maxelementsperlevel: "maxelementsperlevel \nThis is a sample description text"
-    fileneedspaceperhundredchars: "fileneedspaceperhundredchars This is a sample description text"
-    maxelementsoverall: "maxelementsoverall This is a sample description text"
+    maxcharsperfile: "Max chars per file \nMaximale Zahl an Zeichen (Buchstaben, Zahlen, Sonderzeichen,...), die eine Datei fassen kann."
+    maxelementsperlevel: "Max elements per level \nMaximale Zahl an Elementen (Dateien und Ordner), die auf einer Ebene des Dateisystems erstellt werden können."
+    filespacepertwentychars: "File space per twenty chars \nGibt an, wie viel Speicherplatz (in Byte), eine Datei pro angefangene 20 Zeichen beansprucht."
+    maxelementsoverall: "Max elements overall \nGibt an, wie viele Elemente (Dateien und Ordner) ein Spieler pro Computer maximal erstellen kann."
 ui:
   desktop:
-    maxiconsondesktop: "maxiconsondesktop This is a sample description text"
+    maxiconsondesktop: "Max icons on desktop \nGibt an, wie viele Icons maximal auf dem vorhanden sein dürfen."
 finance:
-  initialmoneyonfirstwallet: "This is a sample description text"
+  initialmoneyonfirstwallet: "Inital money on first wallet \nGibt an, wie viel Geld automatisch auf dem ersten erstellten Wallet eines Spielers vorhanden ist."
   wallet:
-    maxamounttransferablebyhack: "This is a sample description text"
-    minutecooldownforhacktransactions: "This is a sample description text"
-    maxwalletamount: "This is a sample description text"
+    maxamounttransferablebyhack: "Max amount transferable by hack \nGibt an, wie viel Geld ein Hacker maximal durch eine Überweisung von einem gehackten PC senden kann."
+    hacktransactionscooldownminutes: "Hacktransaction cooldown minutes \nGibt die Zeitspanne (in Minuten) an, wie lange zwischen Transaktionen des gleichen gehackten Wallets gewartet werden muss."
+    maxwalletamount: "Max wallet amount \nGibt an, wie viele Wallets ein Spieler maximal besitzen darf."
 services:
   ssh:
     priority:
-      level: "This is a sample description text"
-      changeablebyplayer: "This is a sample description text"
+      level: 2
+      playercanchange: true
     needs:
-      cpu: "This is a sample description text"
-      ram: "This is a sample description text"
-      gpu: "This is a sample description text"
-      network: "This is a sample description text"
+      cpu: 20
+      ram: 30
+      gpu: 50
+      network: 10
   hacking:
     portscan:
       priority:
-        level: "This is a sample description text"
-        changeablebyplayer: "This is a sample description text"
+        level: 4
+        playercanchange: false
       needs:
-        cpu: "This is a sample description text"
-        ram: "This is a sample description text"
-        gpu: "This is a sample description text"
-        network: "This is a sample description text"
+        cpu: 10
+        ram: 40
+        gpu: 40
+        network: 90
     bruteforce:
       priority:
-        level: "This is a sample description text"
-        changeablebyplayer: "This is a sample description text"
+        level: 3
+        playercanchange: true
       needs:
-        cpu: "This is a sample description text"
-        ram: "This is a sample description text"
-        gpu: "This is a sample description text"
-        network: "This is a sample description text"
-  miner: "This is a sample description text"
-
+        cpu: 90
+        ram: 90
+        gpu: 90
+        network: 40
+  miner: to be done

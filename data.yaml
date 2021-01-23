@@ -2,7 +2,7 @@ device:
   filesystem:
     maxcharsperfile: '1800'
     maxelementsperlevel: '50'
-    fileneedspaceperhundredchars: 5 * 10^6
+    filespacepertwentychars: 1 * 10^6
     maxelementsoverall: ausstehend
 ui:
   desktop:
@@ -11,13 +11,13 @@ finance:
   initialmoneyonfirstwallet: 0
   wallet:
     maxamounttransferablebyhack: ausstehend
-    minutecooldownforhacktransactions: 45
+    hacktransactionscooldownminutes: 45
     maxwalletamount: '74'
 services:
   ssh:
     priority:
       level: 2
-      changeablebyplayer: true
+      playercanchange: true
     needs:
       cpu: 20
       ram: 30
@@ -27,7 +27,7 @@ services:
     portscan:
       priority:
         level: 4
-        changeablebyplayer: false
+        playercanchange: false
       needs:
         cpu: 10
         ram: 40
@@ -36,7 +36,7 @@ services:
     bruteforce:
       priority:
         level: 3
-        changeablebyplayer: true
+        playercanchange: true
       needs:
         cpu: 90
         ram: 90
