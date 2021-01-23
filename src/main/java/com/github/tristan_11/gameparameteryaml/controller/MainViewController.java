@@ -9,9 +9,9 @@ import com.jfoenix.controls.JFXTreeView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,6 +33,9 @@ public class MainViewController implements Initializable {
     @FXML
     private JFXTextField filterField;
 
+    @FXML
+    private Label pathTextArea;
+
 
 
     TreeViewHandler treeViewHandler;
@@ -45,26 +48,25 @@ public class MainViewController implements Initializable {
         this.yamlDataHandler.writeMapToYaml(this.valueHandler.getValueMap(), DATAFILE_PATH);
     }
 
-    @FXML
-    void initialLoad(ActionEvent event) {
-
-    }
 
     @FXML
     void itemInTreeViewClicked(MouseEvent event) {
         valueHandler.loadValues(treeViewHandler);
+        setPath();
+    }
+
+    private void setPath(){
+        StringBuilder sb = new StringBuilder();
+        treeViewHandler.getPathToItem().forEach(e->{
+            sb.append("/"+e);
+        });
+        pathTextArea.setText(sb.toString());
     }
 
     @FXML
     void valueChanges(ActionEvent event) throws IOException {
         valueHandler.setNewValue(treeViewHandler.getPathToItem(), valueTextField.getText());
-        System.out.println(treeViewHandler.getPathToItem() + " changed: New Value is " + valueTextField.getText());
     }
-
-    public  JFXTextField getFilterField() {
-        return filterField;
-    }
-
 
 
     @Override
@@ -80,9 +82,9 @@ public class MainViewController implements Initializable {
         valueHandler = new ValueHandler(yamlDataHandler, yamlDescriptionHandler, valueTextField, descriptionTextArea);
         descriptionTextArea.setDisable(true);
 
+        pathTextArea.setText("Wating for path...");
+
         filterField.textProperty().addListener((obs, oldText, newText) -> {
-            // do what you need with newText here, e.g.
-            System.out.println("Filter hat gewechselt: " + filterField.getText());
             treeViewHandler.setData(filterField.getText());
         });
 

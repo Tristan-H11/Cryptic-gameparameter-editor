@@ -1,6 +1,6 @@
 device:
   filesystem:
-    maxcharsperfile: hallo
+    maxcharsperfile: '1800'
     maxelementsperlevel: '50'
     fileneedspaceperhundredchars: 5 * 10^6
     maxelementsoverall: ausstehend

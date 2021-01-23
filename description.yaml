@@ -1,7 +1,7 @@
 device:
   filesystem:
     maxcharsperfile: "maxcharsperfile This is a sample description text"
-    maxelementsperlevel: "maxelementsperlevel This is a sample description text"
+    maxelementsperlevel: "maxelementsperlevel \nThis is a sample description text"
     fileneedspaceperhundredchars: "fileneedspaceperhundredchars This is a sample description text"
     maxelementsoverall: "maxelementsoverall This is a sample description text"
 ui:

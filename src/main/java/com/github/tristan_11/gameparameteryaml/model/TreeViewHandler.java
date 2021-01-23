@@ -25,6 +25,7 @@ public class TreeViewHandler {
         FilterableTreeItem rootItem = new FilterableTreeItem("Categories");
         Map<String, Object> resultmap = yamlHandler.getResultsAsMap();
 
+
         generateItems(resultmap, rootItem, filter);
         //Setzen des RootItems im View
         treeView.setRoot(rootItem);
@@ -59,6 +60,7 @@ public class TreeViewHandler {
 
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             if (entry.getValue() instanceof Map) {
+                System.out.println("Aktueller Entry: " + entry.getKey());
                 search((Map<String, Object>) entry.getValue(), filter, searchList);
             } else {
                 if (entry.getKey().contains(filter.toLowerCase()))
