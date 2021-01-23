@@ -8,13 +8,18 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 
-import java.io.FileNotFoundException;
+import javax.swing.*;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MainViewController {
+public class MainViewController implements Initializable {
+
+    public static final String DATAFILE_PATH = "data.yaml";
+    public static final String DESCRIPTIONFILE_PATH = "description.yaml";
 
     @FXML
     private JFXTreeView<?> treeView;
@@ -26,18 +31,23 @@ public class MainViewController {
     private JFXTextArea descriptionTextArea;
 
     @FXML
-    private Button initialLoadButton;
+    private JFXTextField filterField;
+
+
 
     TreeViewHandler treeViewHandler;
     ValueHandler valueHandler;
+    YamlHandler yamlDataHandler;
+    YamlHandler yamlDescriptionHandler;
 
     @FXML
-    void initialLoad(ActionEvent event) throws IOException {
-        YamlHandler yamlDataHandler = new YamlHandler("\\data.yaml");
-        YamlHandler yamlDescriptionHandler = new YamlHandler("\\description.yaml");
-        treeViewHandler = new TreeViewHandler(yamlDataHandler, this.treeView);
-        treeViewHandler.setData();
-        valueHandler = new ValueHandler(yamlDataHandler, yamlDescriptionHandler, valueTextField, descriptionTextArea);
+    void saveDataToFile(ActionEvent event) throws IOException {
+        this.yamlDataHandler.writeMapToYaml(this.valueHandler.getValueMap(), DATAFILE_PATH);
+    }
+
+    @FXML
+    void initialLoad(ActionEvent event) {
+
     }
 
     @FXML
@@ -46,8 +56,35 @@ public class MainViewController {
     }
 
     @FXML
-    void valueChanges(ActionEvent event) {
-        System.out.println("Valuefiel changed: " + valueTextField.getText());
+    void valueChanges(ActionEvent event) throws IOException {
+        valueHandler.setNewValue(treeViewHandler.getPathToItem(), valueTextField.getText());
+        System.out.println(treeViewHandler.getPathToItem() + " changed: New Value is " + valueTextField.getText());
     }
 
+    public  JFXTextField getFilterField() {
+        return filterField;
+    }
+
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            yamlDataHandler = new YamlHandler(DATAFILE_PATH);
+            yamlDescriptionHandler = new YamlHandler(DESCRIPTIONFILE_PATH);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        treeViewHandler = new TreeViewHandler(yamlDataHandler, this.treeView, this.filterField);
+        treeViewHandler.setData("");
+        valueHandler = new ValueHandler(yamlDataHandler, yamlDescriptionHandler, valueTextField, descriptionTextArea);
+        descriptionTextArea.setDisable(true);
+
+        filterField.textProperty().addListener((obs, oldText, newText) -> {
+            // do what you need with newText here, e.g.
+            System.out.println("Filter hat gewechselt: " + filterField.getText());
+            treeViewHandler.setData(filterField.getText());
+        });
+
+    }
 }

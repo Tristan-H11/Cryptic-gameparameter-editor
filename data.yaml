@@ -1,18 +1,18 @@
 device:
   filesystem:
-    maxcharsperfile: 1800
-    maxelementsperlevel: 32
-    fileneedspaceperhundredchars: 5 * 10e6
-    maxelementsoverall: "ausstehend"
+    maxcharsperfile: hallo
+    maxelementsperlevel: '50'
+    fileneedspaceperhundredchars: 5 * 10^6
+    maxelementsoverall: ausstehend
 ui:
   desktop:
-    maxiconsondesktop: 64
+    maxiconsondesktop: Keine Icons
 finance:
   initialmoneyonfirstwallet: 0
   wallet:
-    maxamounttransferablebyhack: "ausstehend" #steht noch nicht fest, will da aber irgendwas drin haben
+    maxamounttransferablebyhack: ausstehend
     minutecooldownforhacktransactions: 45
-    maxwalletamount: 3
+    maxwalletamount: '74'
 services:
   ssh:
     priority:
@@ -42,5 +42,4 @@ services:
         ram: 90
         gpu: 90
         network: 40
-  miner: "to be done"
-
+  miner: to be done

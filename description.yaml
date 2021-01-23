@@ -1,0 +1,46 @@
+device:
+  filesystem:
+    maxcharsperfile: "maxcharsperfile This is a sample description text"
+    maxelementsperlevel: "maxelementsperlevel This is a sample description text"
+    fileneedspaceperhundredchars: "fileneedspaceperhundredchars This is a sample description text"
+    maxelementsoverall: "maxelementsoverall This is a sample description text"
+ui:
+  desktop:
+    maxiconsondesktop: "maxiconsondesktop This is a sample description text"
+finance:
+  initialmoneyonfirstwallet: "This is a sample description text"
+  wallet:
+    maxamounttransferablebyhack: "This is a sample description text"
+    minutecooldownforhacktransactions: "This is a sample description text"
+    maxwalletamount: "This is a sample description text"
+services:
+  ssh:
+    priority:
+      level: "This is a sample description text"
+      changeablebyplayer: "This is a sample description text"
+    needs:
+      cpu: "This is a sample description text"
+      ram: "This is a sample description text"
+      gpu: "This is a sample description text"
+      network: "This is a sample description text"
+  hacking:
+    portscan:
+      priority:
+        level: "This is a sample description text"
+        changeablebyplayer: "This is a sample description text"
+      needs:
+        cpu: "This is a sample description text"
+        ram: "This is a sample description text"
+        gpu: "This is a sample description text"
+        network: "This is a sample description text"
+    bruteforce:
+      priority:
+        level: "This is a sample description text"
+        changeablebyplayer: "This is a sample description text"
+      needs:
+        cpu: "This is a sample description text"
+        ram: "This is a sample description text"
+        gpu: "This is a sample description text"
+        network: "This is a sample description text"
+  miner: "This is a sample description text"
+

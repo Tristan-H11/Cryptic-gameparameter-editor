@@ -16,6 +16,8 @@
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
               <buttons>
                 <Button fx:id="initialLoadButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#initialLoad" text="InitialLoad" />
+                  <JFXButton fx:id="safeButton" mnemonicParsing="false" onAction="#saveDataToFile" text="speichern" />
+                  <JFXTextField fx:id="filterField" />
               </buttons>
             </ButtonBar>
          </top>
@@ -47,7 +49,7 @@
                      </GridPane.margin>
                   </Label>
                   <JFXTextField fx:id="valueTextField" onAction="#valueChanges" text="ExampleValue" GridPane.columnIndex="1" />
-                  <JFXTextArea fx:id="descriptionTextArea" prefHeight="200.0" prefWidth="200.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi laoreet nisl id pretium mattis. Cras eget ante lobortis, consequat nulla vel, feugiat dolor. Vivamus ac dignissim ipsum, sed bibendum nulla. Maecenas eget est non felis pulvinar malesuada. Morbi lectus enim, pretium quis tortor ut, rhoncus rutrum elit. Fusce aliquam dolor. " GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <JFXTextArea fx:id="descriptionTextArea" prefHeight="200.0" prefWidth="200.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
