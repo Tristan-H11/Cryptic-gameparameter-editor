@@ -1,0 +1,46 @@
+device:
+  filesystem:
+    maxcharsperfile: 1800
+    maxelementsperlevel: 32
+    fileneedspaceperhundredchars: 5 * 10e6
+    maxelementsoverall: "ausstehend"
+ui:
+  desktop:
+    maxiconsondesktop: 64
+finance:
+  initialmoneyonfirstwallet: 0
+  wallet:
+    maxamounttransferablebyhack: "ausstehend" #steht noch nicht fest, will da aber irgendwas drin haben
+    minutecooldownforhacktransactions: 45
+    maxwalletamount: 3
+services:
+  ssh:
+    priority:
+      level: 2
+      changeablebyplayer: true
+    needs:
+      cpu: 20
+      ram: 30
+      gpu: 50
+      network: 10
+  hacking:
+    portscan:
+      priority:
+        level: 4
+        changeablebyplayer: false
+      needs:
+        cpu: 10
+        ram: 40
+        gpu: 40
+        network: 90
+    bruteforce:
+      priority:
+        level: 3
+        changeablebyplayer: true
+      needs:
+        cpu: 90
+        ram: 90
+        gpu: 90
+        network: 40
+  miner: "to be done"
+
