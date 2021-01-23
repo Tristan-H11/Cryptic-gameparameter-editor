@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXTreeView;
 import javafx.scene.control.TreeItem;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class TreeViewHandler {
@@ -18,13 +19,12 @@ public class TreeViewHandler {
 
     public void setData() {
         // Create the Root TreeItem
-        TreeItem rootItem = new TreeItem("Kategorien");
+        TreeItem rootItem = new TreeItem("Categories");
         Map<String, Object> resultmap = yamlHandler.getResultsAsMap();
 
         generateItems(resultmap, rootItem);
         //Setzen des RootItems im View
         treeView.setRoot(rootItem);
-
     }
 
     /**
@@ -39,8 +39,15 @@ public class TreeViewHandler {
                 this.generateItems((Map<String, Object>) o, treeitem);
             }
             item.getChildren().add(treeitem);
-
         });
+    }
 
+    public List<String> getPathToItem(){
+        List<String> pathElements = new ArrayList();
+        for (TreeItem item = (TreeItem) this.treeView.getSelectionModel().getSelectedItem();
+             item != null ; item = item.getParent()) {
+            pathElements.add(0, item.getValue().toString());
+        }
+        return pathElements;
     }
 }

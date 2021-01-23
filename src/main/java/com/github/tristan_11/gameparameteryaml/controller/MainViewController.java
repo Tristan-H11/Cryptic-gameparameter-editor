@@ -1,6 +1,7 @@
 package com.github.tristan_11.gameparameteryaml.controller;
 
 import com.github.tristan_11.gameparameteryaml.model.TreeViewHandler;
+import com.github.tristan_11.gameparameteryaml.model.ValueHandler;
 import com.github.tristan_11.gameparameteryaml.model.YamlHandler;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -27,16 +28,20 @@ public class MainViewController {
     @FXML
     private Button initialLoadButton;
 
+    TreeViewHandler treeViewHandler;
+    ValueHandler valueHandler;
+
     @FXML
     void initialLoad(ActionEvent event) throws IOException {
         YamlHandler yamlHandler = new YamlHandler("\\data.yaml");
-        TreeViewHandler treeViewHandler = new TreeViewHandler(yamlHandler, this.treeView);
+        treeViewHandler = new TreeViewHandler(yamlHandler, this.treeView);
         treeViewHandler.setData();
+        valueHandler = new ValueHandler();
     }
 
     @FXML
     void itemInTreeViewClicked(MouseEvent event) {
-
+        valueHandler.loadValues(treeViewHandler.getPathToItem());
     }
 
     @FXML
