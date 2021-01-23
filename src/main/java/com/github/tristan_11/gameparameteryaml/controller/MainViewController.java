@@ -42,7 +42,7 @@ public class MainViewController {
 
     @FXML
     void itemInTreeViewClicked(MouseEvent event) {
-        valueHandler.loadValues(treeViewHandler.getPathToItem());
+        valueHandler.loadValues(treeViewHandler);
     }
 
     @FXML
