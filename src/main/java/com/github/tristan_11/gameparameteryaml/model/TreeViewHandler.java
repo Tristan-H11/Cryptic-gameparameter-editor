@@ -48,6 +48,7 @@ public class TreeViewHandler {
              item != null ; item = item.getParent()) {
             pathElements.add(0, item.getValue().toString());
         }
+        pathElements.remove("Categories"); //needed to get the correct yaml path
         return pathElements;
     }
 }

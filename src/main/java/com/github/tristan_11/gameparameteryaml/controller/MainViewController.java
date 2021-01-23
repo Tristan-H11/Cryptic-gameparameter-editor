@@ -33,10 +33,11 @@ public class MainViewController {
 
     @FXML
     void initialLoad(ActionEvent event) throws IOException {
-        YamlHandler yamlHandler = new YamlHandler("\\data.yaml");
-        treeViewHandler = new TreeViewHandler(yamlHandler, this.treeView);
+        YamlHandler yamlDataHandler = new YamlHandler("\\data.yaml");
+        YamlHandler yamlDescriptionHandler = new YamlHandler("\\description.yaml");
+        treeViewHandler = new TreeViewHandler(yamlDataHandler, this.treeView);
         treeViewHandler.setData();
-        valueHandler = new ValueHandler();
+        valueHandler = new ValueHandler(yamlDataHandler, yamlDescriptionHandler, valueTextField, descriptionTextArea);
     }
 
     @FXML
