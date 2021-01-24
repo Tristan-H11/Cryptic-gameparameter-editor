@@ -6,7 +6,7 @@ device:
     maxelementsoverall: ausstehend
 ui:
   desktop:
-    maxiconsondesktop: Marius
+    maxiconsondesktop: 32
 finance:
   initialmoneyonfirstwallet: 0
   wallet:

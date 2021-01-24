@@ -2,9 +2,9 @@ package com.github.tristan_11.gameparameteryaml.model;
 
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeView;
+import javafx.beans.binding.Bindings;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,15 +22,25 @@ public class TreeViewHandler {
 
     public void setData(String filter) {
         // Create the Root TreeItem
-        FilterableTreeItem rootItem = new FilterableTreeItem("Categories");
+        FilterableTreeItem<String> rootItem = new FilterableTreeItem<String>("Categories");
         Map<String, Object> resultmap = yamlHandler.getResultsAsMap();
-
+        System.out.println("Filtertext: " + filter);
 
         generateItems(resultmap, rootItem, filter);
+
+        rootItem.predicateProperty().bind(Bindings.createObjectBinding( () -> {
+            if (filter.isEmpty()) {
+                return null;
+            }
+            return TreeItemPredicate.create(t -> t.toString().contains(filter));
+        }));
+
+
         //Setzen des RootItems im View
         treeView.setRoot(rootItem);
         treeView.setShowRoot(false);
     }
+
 
     /**
      * Bekommt die map aus der yaml übergeben und baut rekusriv bis auf variablen level das TreeItem runter.
@@ -39,21 +49,29 @@ public class TreeViewHandler {
      * @param item
      */
     private void generateItems(Map<String, Object> map, FilterableTreeItem item, String filter) {
-        if (filter.isEmpty()) {
-            map.forEach((s, o) -> {
-                FilterableTreeItem treeitem = new FilterableTreeItem(s);
-                if (o instanceof Map) {
-                    this.generateItems((Map<String, Object>) o, treeitem, filter);
-                }
-                item.getChildren().add(treeitem);
-            });
-        } else { //ToDo: Parents merken / Pfad speichern / iwie sowas
-            List<String> searchList = new LinkedList<>();
-            search(map, filter, searchList);
-            searchList.forEach(searchEntry -> {
-                item.getChildren().add(new FilterableTreeItem<>(searchEntry));
-            });
-        }
+        // if (filter.isEmpty()) {
+        map.forEach((s, o) -> {
+            FilterableTreeItem treeitem = new FilterableTreeItem(s);
+            if (o instanceof Map) {
+                this.generateItems((Map<String, Object>) o, treeitem, filter);
+
+            }
+            item.getChildren().add(treeitem);
+
+            //    if (s.toString().contains(filter) && !(o instanceof Map)) {
+            //        item.getChildren().add(treeitem);
+            //    }
+        });
+
+
+        //    } else { //ToDo: Parents merken / Pfad speichern / iwie sowas
+        //        List<String> searchList = new LinkedList<>();
+        //        search(map, filter, searchList);
+        //        searchList.forEach(searchEntry -> {
+        //            item.getChildren().add(new FilterableTreeItem<>(searchEntry));
+        //        }
+        //        );
+        //    }
     }
 
     private void search(Map<String, Object> map, String filter, List<String> searchList) {

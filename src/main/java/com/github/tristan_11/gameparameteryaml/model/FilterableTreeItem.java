@@ -1,5 +1,6 @@
 package com.github.tristan_11.gameparameteryaml.model;
 import java.util.function.Predicate;
+import java.util.logging.Filter;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
@@ -28,7 +29,6 @@ import javafx.scene.control.cell.CheckBoxTreeCell;
 public class FilterableTreeItem<T> extends CheckBoxTreeItem<T> {
     private final ObservableList<TreeItem<T>> sourceList = FXCollections.observableArrayList();
     private final FilteredList<TreeItem<T>> filteredList =new FilteredList<>(this.sourceList);
-
     private final ObjectProperty<TreeItemPredicate<T>> predicate = new SimpleObjectProperty<>();
 
     /**
