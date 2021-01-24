@@ -28,13 +28,8 @@ public class TreeViewHandler {
 
         generateItems(resultmap, rootItem, filter);
 
-        rootItem.predicateProperty().bind(Bindings.createObjectBinding( () -> {
-            if (filter.isEmpty()) {
-                return null;
-            }
-            return TreeItemPredicate.create(t -> t.toString().contains(filter));
-        }));
 
+        rootItem.predicateProperty().setValue(e -> e.contains(filter));
 
         //Setzen des RootItems im View
         treeView.setRoot(rootItem);
@@ -56,10 +51,10 @@ public class TreeViewHandler {
                 this.generateItems((Map<String, Object>) o, treeitem, filter);
 
             }
-            item.getChildren().add(treeitem);
+            item.getSourceChildren().add(treeitem);
 
             //    if (s.toString().contains(filter) && !(o instanceof Map)) {
-            //        item.getChildren().add(treeitem);
+            //        item.getSourceChildren().add(treeitem);
             //    }
         });
 

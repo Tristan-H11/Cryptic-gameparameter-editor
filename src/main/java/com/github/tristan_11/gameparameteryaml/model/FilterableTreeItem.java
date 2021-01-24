@@ -6,6 +6,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.scene.control.CheckBoxTreeItem;
@@ -26,76 +27,41 @@ import javafx.scene.control.cell.CheckBoxTreeCell;
  *
  * @param <T> The type of the {@link #getValue() value} property within {@link TreeItem}.
  */
-public class FilterableTreeItem<T> extends CheckBoxTreeItem<T> {
-    private final ObservableList<TreeItem<T>> sourceList = FXCollections.observableArrayList();
-    private final FilteredList<TreeItem<T>> filteredList =new FilteredList<>(this.sourceList);
-    private final ObjectProperty<TreeItemPredicate<T>> predicate = new SimpleObjectProperty<>();
+public class FilterableTreeItem<T> extends TreeItem<T> {
+    private final ObservableList<TreeItem<T>> sourceChildren = FXCollections.observableArrayList();
+    private final FilteredList<TreeItem<T>> filteredChildren = new FilteredList<>(sourceChildren);
+    private final ObjectProperty<Predicate<T>> predicate = new SimpleObjectProperty<>();
 
-    /**
-     * Creates a new {@link TreeItem} with sorted children. To enable sorting it is
-     * necessary to set the {@link TreeItemComparator}. If no comparator is set, then
-     * the tree item will attempt so bind itself to the comparator of its parent.
-     *
-     * @param value the value of the {@link TreeItem}
-     */
     public FilterableTreeItem(T value) {
         super(value);
-        this.filteredList.predicateProperty().bind(Bindings.createObjectBinding(() -> {
-            Predicate<TreeItem<T>> p =  child -> {
-                // Set the predicate of child items to force filtering
+
+        filteredChildren.predicateProperty().bind(Bindings.createObjectBinding(() -> {
+            Predicate<TreeItem<T>> p = child -> {
                 if (child instanceof FilterableTreeItem) {
-                    FilterableTreeItem<T> filterableChild = (FilterableTreeItem<T>) child;
-                    filterableChild.setPredicate(this.predicate.get());
+                    ((FilterableTreeItem<T>) child).predicateProperty().set(predicate.get());
                 }
-                // If there is no predicate, keep this tree item
-                if (this.predicate.get() == null)
+                if (predicate.get() == null || !child.getChildren().isEmpty()) {
                     return true;
-                // If there are children, keep this tree item
-                if (child.getChildren().size() > 0)
-                    return true;
-                // Otherwise ask the TreeItemPredicate
-                return this.predicate.get().test(this, child.getValue());
+                }
+                return predicate.get().test(child.getValue());
             };
             return p;
-        }, this.predicate));
+        } , predicate));
 
-        Bindings.bindContent(getChildren(), getBackingList());
+        filteredChildren.addListener((ListChangeListener<TreeItem<T>>) c -> {
+            while (c.next()) {
+                getChildren().removeAll(c.getRemoved());
+                getChildren().addAll(c.getAddedSubList());
+            }
+        });
     }
 
-    /**
-     * @return the backing list
-     */
-    protected ObservableList<TreeItem<T>> getBackingList() {
-        return this.filteredList;
+    public ObservableList<TreeItem<T>> getSourceChildren() {
+        return sourceChildren;
     }
 
-    /**
-     * Returns the list of children that is backing the filtered list.
-     * @return underlying list of children
-     */
-    public ObservableList<TreeItem<T>> getInternalChildren() {
-        return this.sourceList;
+    public ObjectProperty<Predicate<T>> predicateProperty() {
+        return predicate;
     }
 
-    /**
-     * @return the predicate property
-     */
-    public final ObjectProperty<TreeItemPredicate<T>> predicateProperty() {
-        return this.predicate;
-    }
-
-    /**
-     * @return the predicate
-     */
-    public final TreeItemPredicate<T> getPredicate() {
-        return this.predicate.get();
-    }
-
-    /**
-     * Set the predicate
-     * @param predicate the predicate
-     */
-    public final void setPredicate(TreeItemPredicate<T> predicate) {
-        this.predicate.set(predicate);
-    }
 }

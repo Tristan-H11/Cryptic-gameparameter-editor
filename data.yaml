@@ -35,7 +35,7 @@ services:
         level: 4
         playercanchange: false
       needs:
-        cpu: 10
+        cpu: '50'
         ram: 40
         gpu: 40
         network: 90

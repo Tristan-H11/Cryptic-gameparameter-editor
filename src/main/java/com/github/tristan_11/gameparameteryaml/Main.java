@@ -26,3 +26,8 @@ public class Main extends Application {
         launch(args);
     }
 }
+
+//ToDo: Irgendwie kenntlich machen, dass man Enter drücken muss, dass der Wert gespeichert wird. Alternaiv knopf "Wert setzen"?
+//ToDo: Rückmeldung vom SafeToFile-Button oben einbauen
+//ToDo: Descriptions einbauen? Vorher sortieren?
+//ToDo: Allg verschönern
