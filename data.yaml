@@ -1,12 +1,12 @@
 device:
   filesystem:
-    maxcharsperfile: '1800'
+    maxcharsperfile: '2000'
     maxelementsperlevel: '50'
     filespacepertwentychars: 1 * 10^6
     maxelementsoverall: ausstehend
 ui:
   desktop:
-    maxiconsondesktop: Keine Icons
+    maxiconsondesktop: Marius
 finance:
   initialmoneyonfirstwallet: 0
   wallet:
@@ -21,8 +21,14 @@ services:
     needs:
       cpu: 20
       ram: 30
-      gpu: 50
+      gpu: 50inc
       network: 10
+    workload:
+      reductions:
+        crashBelowPercentage: 0.5
+        freezeBelowPercentage: 0.7
+        bootSlowerByPercentage: 0.2
+        cannotCalculateInput: 0.75
   hacking:
     portscan:
       priority:
@@ -33,6 +39,12 @@ services:
         ram: 40
         gpu: 40
         network: 90
+      workload:
+        reductions:
+          crashBelowPercentage: 0.5
+          freezeBelowPercentage: 0.7
+          bootSlowerByPercentage: 0.2
+          cannotCalculateInput: 0.75
     bruteforce:
       priority:
         level: 3
@@ -42,4 +54,24 @@ services:
         ram: 90
         gpu: 90
         network: 40
-  miner: to be done
+      workload:
+        reductions:
+          crashBelowPercentage: 0.5
+          freezeBelowPercentage: 0.7
+          bootSlowerByPercentage: 0.2
+          cannotCalculateInput: 0.75
+  miner:
+    priority:
+      level: 2
+      playercanchange: true
+    needs:
+      cpu: 20
+      ram: 30
+      gpu: 50
+      network: 10
+    workload:
+      reductions:
+        crashBelowPercentage: 0.5
+        freezeBelowPercentage: 0.7
+        bootSlowerByPercentage: 0.2
+        cannotCalculateInput: 0.75
