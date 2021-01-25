@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Main. Punkt.
+ */
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -27,6 +30,7 @@ public class Main extends Application {
     }
 }
 
+//ToDo: JavaDocs schreiben!!! ALS ERSTES MACHEN ^^
 //ToDo: Irgendwie kenntlich machen, dass man Enter drücken muss, dass der Wert gespeichert wird. Alternaiv knopf "Wert setzen"?
 //ToDo: Rückmeldung vom SafeToFile-Button oben einbauen
 //ToDo: Descriptions einbauen? Vorher sortieren?

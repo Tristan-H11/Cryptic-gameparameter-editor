@@ -19,12 +19,18 @@ public class ValueHandler {
     JFXTextField valueTextField;
     JFXTextArea descriptionTextArea;
 
+    Map<String, Object> valueMap;
+    Map<String, Object> descriptionMap;
+
+    /**
+     * Getter der ValueMap.
+     * @return
+     */
     public Map<String, Object> getValueMap() {
         return valueMap;
     }
 
-    Map<String, Object> valueMap;
-    Map<String, Object> descriptionMap;
+
 
     /**
      * Konstruktor. Setzt nur alle Werte in dem ValueHandler, um sie später richtig nutzen zu können.
@@ -43,7 +49,10 @@ public class ValueHandler {
         descriptionMap = yamlDescriptionHandler.getResultsAsMap();
     }
 
-    //ToDo: Javadox schreiben
+    /**
+     * Lädt die Values in den und die Beschreibung in die entsprechenden TextAreas in der GUI.
+     * @param treeViewHandler Tree, dessen Leave-Daten geladen werden sollen.
+     */
     public void loadValues(TreeViewHandler treeViewHandler) {
         List<String> path = treeViewHandler.getPathToItem();
         if (!path.isEmpty()) {
@@ -53,6 +62,12 @@ public class ValueHandler {
         }
     }
 
+    /**
+     * Lädt die Beschreibung eines Parameters aus der entsprechenden Map.
+     * @param map DescriptionMap
+     * @param path PathToSelectedItem
+     * @param description TextArea to write in
+     */
     private void getDescriptionFromMap(Map<String, Object> map, List<String> path, JFXTextArea description) {
         if (map.get(path.get(0)) instanceof Map) {
             map = (Map<String, Object>) map.get(path.get(0));
@@ -64,6 +79,12 @@ public class ValueHandler {
         }
     }
 
+    /**
+     * Lädt die Beschreibung eines Parameters aus der entsprechenden Map.
+     * @param map ValueMap
+     * @param path PathToSelectedItem
+     * @param valueField TextField to write in
+     */
     private void getValuesFromMap(Map<String, Object> map, List<String> path, JFXTextField valueField) {
         if (map.get(path.get(0)) instanceof Map) {
             map = (Map<String, Object>) map.get(path.get(0));
@@ -76,6 +97,11 @@ public class ValueHandler {
         }
     }
 
+    /**
+     * Setzt den geänderten Wert aus der GUI in die ValueMap
+     * @param path PathToChangedItem
+     * @param newValue NewValue
+     */
     @SuppressWarnings("unchecked")
     public void setNewValue(List<String> path, String newValue) {
         Map<String, Object> tempMap = this.valueMap;
@@ -84,16 +110,5 @@ public class ValueHandler {
         }
         tempMap.put(path.get(path.size() - 1), newValue);
     }
-
-    @SuppressWarnings("unchecked")
-    public void setDescription(List<String> path, String newValue) {
-        Map<String, Object> tempMap = this.descriptionMap;
-        for (int i = 0; i < path.size() - 1; i++) {
-            tempMap = (Map<String, Object>) tempMap.get(path.get(i));
-        }
-        tempMap.put(path.get(path.size() - 1), newValue);
-    }
-
-
 
 }

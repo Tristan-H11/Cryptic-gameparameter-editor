@@ -1,6 +1,4 @@
 package com.github.tristan_11.gameparameteryaml.model;
-import java.util.function.Predicate;
-import java.util.logging.Filter;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
@@ -13,15 +11,17 @@ import javafx.scene.control.CheckBoxTreeItem;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.cell.CheckBoxTreeCell;
 
+import java.util.function.Predicate;
+
 /**
  * An extension of {@link TreeItem} with the possibility to filter its children. To enable filtering
  * it is necessary to set the {@link TreeItemPredicate}. If a predicate is set, then the tree item
  * will also use this predicate to filter its children (if they are of the type FilterableTreeItem).
- *
+ * <p>
  * A tree item that has children will not be filtered. The predicate will only be evaluated, if the
  * tree item is a leaf. Since the predicate is also set for the child tree items, the tree item in question
  * can turn into a leaf if all its children are filtered.
- *
+ * <p>
  * This class extends {@link CheckBoxTreeItem} so it can, but does not need to be, used in conjunction
  * with {@link CheckBoxTreeCell} cells.
  *
@@ -29,12 +29,12 @@ import javafx.scene.control.cell.CheckBoxTreeCell;
  */
 public class FilterableTreeItem<T> extends TreeItem<T> {
     private final ObservableList<TreeItem<T>> sourceChildren = FXCollections.observableArrayList();
-    private final FilteredList<TreeItem<T>> filteredChildren = new FilteredList<>(sourceChildren);
     private final ObjectProperty<Predicate<T>> predicate = new SimpleObjectProperty<>();
 
     public FilterableTreeItem(T value) {
         super(value);
 
+        FilteredList<TreeItem<T>> filteredChildren = new FilteredList<>(sourceChildren);
         filteredChildren.predicateProperty().bind(Bindings.createObjectBinding(() -> {
             Predicate<TreeItem<T>> p = child -> {
                 if (child instanceof FilterableTreeItem) {
@@ -46,7 +46,7 @@ public class FilterableTreeItem<T> extends TreeItem<T> {
                 return predicate.get().test(child.getValue());
             };
             return p;
-        } , predicate));
+        }, predicate));
 
         filteredChildren.addListener((ListChangeListener<TreeItem<T>>) c -> {
             while (c.next()) {
