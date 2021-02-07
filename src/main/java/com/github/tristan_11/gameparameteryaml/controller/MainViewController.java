@@ -102,7 +102,7 @@ public class MainViewController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        treeViewHandler = new TreeViewHandler(yamlDataHandler, this.treeView, this.filterField);
+        treeViewHandler = new TreeViewHandler(yamlDataHandler.getResultsAsMap(), this.treeView);
         treeViewHandler.setData("");
         valueHandler = new ValueHandler(yamlDataHandler, yamlDescriptionHandler, valueTextField, descriptionTextArea);
         descriptionTextArea.setDisable(true);

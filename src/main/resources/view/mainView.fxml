@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="470.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.tristan_11.gameparameteryaml.controller.MainViewController">
+<AnchorPane prefHeight="470.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.tristan_11.gameparameteryaml.controller.MainViewController">
    <children>
-      <BorderPane layoutX="170.0" layoutY="111.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="-119.0" layoutY="111.0" prefHeight="470.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <JFXTreeView fx:id="treeView" onMouseReleased="#itemInTreeViewClicked" prefHeight="400.0" prefWidth="248.0" style="-fx-border-color: #d77d7d; -fx-border-width: 3;" BorderPane.alignment="CENTER" />
+            <JFXTreeView fx:id="treeView" onMouseReleased="#itemInTreeViewClicked" prefHeight="430.0" prefWidth="357.0" style="-fx-border-color: #d77d7d; -fx-border-width: 3;" BorderPane.alignment="CENTER" />
          </left>
          <center>
             <GridPane alignment="CENTER_RIGHT" prefHeight="422.0" prefWidth="583.0" style="-fx-border-color: #d77d7d; -fx-border-width: 3;" BorderPane.alignment="CENTER">
@@ -76,7 +76,7 @@
          <top>
             <HBox prefHeight="40.0" prefWidth="831.0" style="-fx-background-color: #d77d7d;" BorderPane.alignment="BOTTOM_CENTER">
                <children>
-                  <JFXTextField fx:id="filterField" prefHeight="38.0" prefWidth="248.0" promptText="Search..">
+                  <JFXTextField fx:id="filterField" prefHeight="38.0" prefWidth="351.0" promptText="Search..">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin></JFXTextField>

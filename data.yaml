@@ -1,18 +1,21 @@
 device:
   filesystem:
-    maxcharsperfile: '2000'
-    maxelementsperlevel: '50'
-    filespacepertwentychars: 1 * 10^6
-    maxelementsoverall: ausstehend
+    file:
+      maxcharsperfile: '2000'
+      maxelementsperlevel: '50'
+      filespacepertwentychars: 1 * 10^6
+      playercancreate: 'true'
+    folder:
+      playercancreate: 'true'
+    maxelementsoverall: '-1'
 ui:
   desktop:
-    maxiconsondesktop: 32
+    maxiconsondesktop: '64'
+    playercanmoveitems: 'true'
 finance:
-  initialmoneyonfirstwallet: 0
+  initialmoneyonfirstwallet: '0'
   wallet:
-    maxamounttransferablebyhack: ausstehend
-    hacktransactionscooldownminutes: 45
-    maxwalletamount: '74'
+    maxwalletamount: '3'
 services:
   ssh:
     priority:
@@ -25,10 +28,10 @@ services:
       network: 10
     workload:
       reductions:
-        crashBelowPercentage: 0.5
-        freezeBelowPercentage: 0.7
-        bootSlowerByPercentage: 0.2
-        cannotCalculateInput: 0.75
+        crashbelowpercentage: 0.5
+        freezebelowpercentage: 0.7
+        bootslowerbypercentage: 0.2
+        cannotcalculateinput: 0.75
   hacking:
     portscan:
       priority:
@@ -40,11 +43,11 @@ services:
         gpu: 40
         network: 90
       workload:
-        reductions:
-          crashBelowPercentage: 0.5
-          freezeBelowPercentage: 0.7
-          bootSlowerByPercentage: 0.2
-          cannotCalculateInput: 0.75
+        reductions: null
+        crashbelowpercentage: 0.5
+        freezebelowpercentage: 0.7
+        bootslowerbypercentage: 0.2
+        cannotcalculateinput: 0.75
     bruteforce:
       priority:
         level: 3
@@ -55,11 +58,11 @@ services:
         gpu: 90
         network: 40
       workload:
-        reductions:
-          crashBelowPercentage: 0.5
-          freezeBelowPercentage: 0.7
-          bootSlowerByPercentage: 0.2
-          cannotCalculateInput: 0.75
+        reductions: null
+        crashbelowpercentage: 0.5
+        freezebelowpercentage: 0.7
+        bootslowerbypercentage: 0.2
+        cannotcalculateinput: 0.75
   miner:
     priority:
       level: 2
@@ -71,7 +74,7 @@ services:
       network: 10
     workload:
       reductions:
-        crashBelowPercentage: 0.5
-        freezeBelowPercentage: 0.7
-        bootSlowerByPercentage: 0.2
-        cannotCalculateInput: 0.75
+        crashbelowpercentage: 0.5
+        freezebelowpercentage: 0.7
+        bootslowerbypercentage: 0.2
+        cannotcalculateinput: 0.75

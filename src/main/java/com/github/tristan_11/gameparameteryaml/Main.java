@@ -17,7 +17,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
 
         AnchorPane root = FXMLLoader.load(getClass().getResource("/view/mainView.fxml"));
-        Scene scene = new Scene(root, 850, 470);
+        Scene scene = new Scene(root, 950, 470);
         scene.getStylesheets().add("style.css");
         primaryStage.setTitle("Cryptic gameparemter editor");
         primaryStage.setResizable(true);
@@ -30,8 +30,6 @@ public class Main extends Application {
     }
 }
 
-//ToDo: JavaDocs schreiben!!! ALS ERSTES MACHEN ^^
-//ToDo: Irgendwie kenntlich machen, dass man Enter drücken muss, dass der Wert gespeichert wird. Alternaiv knopf "Wert setzen"?
-//ToDo: Rückmeldung vom SafeToFile-Button oben einbauen
-//ToDo: Descriptions einbauen? Vorher sortieren?
-//ToDo: Allg verschönern
+// ToDo: Config für die Config. Auf Typen prüfen. Descriptionleave in eine Map ändern
+// ToDo: checkInput Function vorm SaveToMap mit Meldung an den Nutzer
+// ToDo: Tests?

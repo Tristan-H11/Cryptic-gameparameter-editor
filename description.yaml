@@ -17,7 +17,7 @@ services:
   ssh:
     priority:
       level: 2
-      playercanchange: true
+      playercanchange:
     needs:
       cpu: 20
       ram: 30
