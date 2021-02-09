@@ -108,6 +108,7 @@ public class ValueHandler {
         for (int i = 0; i < path.size() - 1; i++) {
             tempMap = (Map<String, Object>) tempMap.get(path.get(i));
         }
+
         tempMap.put(path.get(path.size() - 1), newValue);
     }
 

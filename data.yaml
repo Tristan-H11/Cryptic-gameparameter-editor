@@ -1,19 +1,19 @@
 device:
   filesystem:
     file:
-      maxcharsperfile: '2000'
+      maxcharsperfile: '32'
       maxelementsperlevel: '50'
       filespacepertwentychars: 1 * 10^6
-      playercancreate: 'true'
+      playercancreate: eventuell
     folder:
       playercancreate: 'true'
-    maxelementsoverall: '-1'
+    maxelementsoverall: be
 ui:
   desktop:
-    maxiconsondesktop: '64'
+    maxiconsondesktop: '45'
     playercanmoveitems: 'true'
 finance:
-  initialmoneyonfirstwallet: '0'
+  initialmoneyonfirstwallet: '1000'
   wallet:
     maxwalletamount: '3'
 services:
@@ -62,7 +62,7 @@ services:
         crashbelowpercentage: 0.5
         freezebelowpercentage: 0.7
         bootslowerbypercentage: 0.2
-        cannotcalculateinput: 0.75
+        cannotcalculateinput: '345'
   miner:
     priority:
       level: 2
