@@ -30,8 +30,6 @@ public class ValueHandler {
         return valueMap;
     }
 
-
-
     /**
      * Konstruktor. Setzt nur alle Werte in dem ValueHandler, um sie später richtig nutzen zu können.
      *

@@ -79,16 +79,6 @@ public class MainViewController implements Initializable {
     }
 
     /**
-     * Setzt bei Änderung durch die ENTER-Taste den Wert des ValueFields in die Map.
-     * @param event
-     * @throws IOException
-     */
-    @FXML
-    void valueChanges(ActionEvent event) throws IOException {
-        valueHandler.setNewValue(treeViewHandler.getPathToItem(), valueTextField.getText());
-    }
-
-    /**
      * Initialize Methode.
      * Setzt die {@link YamlHandler}, sowie andere Handler und setzt den Listener für das Filterfeld.
      * @param location
@@ -111,6 +101,12 @@ public class MainViewController implements Initializable {
 
         filterField.textProperty().addListener((obs, oldText, newText) -> {
             treeViewHandler.setData(filterField.getText());
+        });
+
+        valueTextField.textProperty().addListener((obs, oldText, newText) -> {
+            if(!oldText.isEmpty()){
+                valueHandler.setNewValue(treeViewHandler.getPathToItem(), newText);
+            }
         });
 
     }

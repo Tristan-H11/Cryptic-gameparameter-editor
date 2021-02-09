@@ -42,7 +42,7 @@
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <JFXTextField fx:id="valueTextField" focusColor="#f05d5e" onAction="#valueChanges" promptText="Wating for parameter..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <JFXTextField fx:id="valueTextField" focusColor="#f05d5e" promptText="Wating for parameter..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <JFXTextArea fx:id="descriptionTextArea" editable="false" prefHeight="291.0" prefWidth="408.0" text="Wating for parameter..." unFocusColor="#d77d7d" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="20.0" />
