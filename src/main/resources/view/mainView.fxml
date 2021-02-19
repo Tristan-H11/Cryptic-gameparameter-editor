@@ -8,12 +8,15 @@
 
 <AnchorPane prefHeight="470.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.tristan_11.gameparameteryaml.controller.MainViewController">
    <children>
-      <BorderPane layoutX="-119.0" layoutY="111.0" prefHeight="470.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="-119.0" layoutY="111.0" prefHeight="470.0" prefWidth="950.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
          <left>
-            <JFXTreeView fx:id="treeView" onMouseReleased="#itemInTreeViewClicked" prefHeight="430.0" prefWidth="357.0" style="-fx-border-color: #d77d7d; -fx-border-width: 3;" BorderPane.alignment="CENTER" />
+            <JFXTreeView fx:id="treeView" onMouseReleased="#itemInTreeViewClicked" prefHeight="430.0" prefWidth="357.0" style="-fx-background-color: #d7d7d7; -fx-region-background: #d7d7d7;" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets right="50.0" top="2.0" />
+               </BorderPane.margin></JFXTreeView>
          </left>
          <center>
-            <GridPane alignment="CENTER_RIGHT" prefHeight="422.0" prefWidth="583.0" style="-fx-border-color: #d77d7d; -fx-border-width: 3;" BorderPane.alignment="CENTER">
+            <GridPane alignment="CENTER_RIGHT" prefHeight="422.0" prefWidth="583.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="NEVER" maxWidth="111.0" minWidth="111.0" prefWidth="111.0" />
                 <ColumnConstraints hgrow="NEVER" maxWidth="450.0" minWidth="450.0" prefWidth="450.0" />
@@ -42,7 +45,7 @@
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <JFXTextField fx:id="valueTextField" focusColor="#f05d5e" promptText="Wating for parameter..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <JFXTextField id=".textField" fx:id="valueTextField" focusColor="#f05d5e" promptText="Wating for parameter..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <JFXTextArea fx:id="descriptionTextArea" editable="false" prefHeight="291.0" prefWidth="408.0" text="Wating for parameter..." unFocusColor="#d77d7d" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="20.0" />
@@ -62,7 +65,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label fx:id="pathTextArea" prefHeight="90.0" prefWidth="454.0" textFill="#d77d7d" GridPane.columnIndex="1">
+                  <Label id="pathLabel" fx:id="pathTextArea" prefHeight="90.0" prefWidth="454.0" textFill="#d77d7d" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets top="1.0" />
                      </GridPane.margin>
@@ -74,16 +77,19 @@
             </GridPane>
          </center>
          <top>
-            <HBox prefHeight="40.0" prefWidth="831.0" style="-fx-background-color: #d77d7d;" BorderPane.alignment="BOTTOM_CENTER">
+            <HBox prefHeight="40.0" prefWidth="831.0" BorderPane.alignment="BOTTOM_CENTER">
                <children>
-                  <JFXTextField fx:id="filterField" prefHeight="38.0" prefWidth="351.0" promptText="Search..">
+                  <JFXTextField id=".textField" fx:id="filterField" focusColor="#f05d5e" prefHeight="38.0" prefWidth="357.0" promptText="Search.." style="-fx-border-color: #000000;">
                      <HBox.margin>
-                        <Insets left="5.0" />
+                        <Insets />
                      </HBox.margin></JFXTextField>
-                  <Label prefHeight="47.0" prefWidth="494.0" text="ToDo: Datei erfolgreich gespeichert label bauen!!" />
-                  <JFXButton id=".buton" fx:id="safeButton" alignment="CENTER" mnemonicParsing="false" onAction="#saveDataToFile" prefHeight="50.0" prefWidth="101.0" ripplerFill="WHITE" text="SAVE TO FILE" textAlignment="CENTER" />
+                  <Label fx:id="savedToFileLabel" alignment="CENTER" prefHeight="47.0" prefWidth="494.0" text="Speichern nicht vergessen" textAlignment="CENTER" />
+                  <JFXButton id=".button" fx:id="safeButton" alignment="CENTER" mnemonicParsing="false" onAction="#saveDataToFile" prefHeight="40.0" prefWidth="111.0" ripplerFill="#e8c1c1" style="-fx-border-color: #000000;" text="SAVE TO FILE" textAlignment="CENTER" />
                </children>
             </HBox>
-         </top></BorderPane>
+         </top>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></BorderPane>
    </children>
 </AnchorPane>

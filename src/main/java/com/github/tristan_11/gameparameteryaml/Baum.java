@@ -1,16 +1,16 @@
 package com.github.tristan_11.gameparameteryaml;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.*;
 
 public class Baum {
 
     String name = "";
-    ArrayList<Baum> children;
+    ArrayList<Baum> childList;
 
-    public Baum(){
-        children = new ArrayList<>();
+    public Baum() {
+        childList = new ArrayList<>();
     }
+
     public String getName() {
         return name;
     }
@@ -20,10 +20,10 @@ public class Baum {
     }
 
     public ArrayList<Baum> getChildren() {
-        return children;
+        return childList;
     }
 
-    public void addChildren(HashSet<Baum> children) {
-        this.children.addAll(children);
+    public void addChildren(ArrayList<Baum> children) {
+        this.childList.addAll(children);
     }
 }

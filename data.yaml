@@ -1,17 +1,13 @@
 device:
   filesystem:
     file:
-      maxcharsperfile: '32'
-      maxelementsperlevel: '50'
       filespacepertwentychars: 1 * 10^6
+      maxcharsperfile: '64'
+      maxelementsperlevel: '50'
       playercancreate: eventuell
     folder:
       playercancreate: 'true'
     maxelementsoverall: be
-ui:
-  desktop:
-    maxiconsondesktop: '45'
-    playercanmoveitems: 'true'
 finance:
   initialmoneyonfirstwallet: '1000'
   wallet:
@@ -20,7 +16,7 @@ services:
   ssh:
     priority:
       level: 2
-      playercanchange: true
+      playercanchangeonlevel: 5
     needs:
       cpu: 20
       ram: 30
@@ -32,41 +28,40 @@ services:
         freezebelowpercentage: 0.7
         bootslowerbypercentage: 0.2
         cannotcalculateinput: 0.75
-  hacking:
-    portscan:
-      priority:
-        level: 4
-        playercanchange: false
-      needs:
-        cpu: '50'
-        ram: 40
-        gpu: 40
-        network: 90
-      workload:
-        reductions: null
+  portscan:
+    priority:
+      level: 4
+      playercanchangeonlevel: -1
+    needs:
+      cpu: '50'
+      ram: 40
+      gpu: 40
+      network: 90
+    workload:
+      reductions:
+        crashbelowpercentage: 0.5
+        freezebelowpercentage: 0.7
+        bootslowerbypercentage: 0.2
+      cannotcalculateinput: 0.75
+  bruteforce:
+    priority:
+      level: 3
+      playercanchangeonlevel: 1
+    needs:
+      cpu: 90
+      ram: 90
+      gpu: 90
+      network: 40
+    workload:
+      reductions:
         crashbelowpercentage: 0.5
         freezebelowpercentage: 0.7
         bootslowerbypercentage: 0.2
         cannotcalculateinput: 0.75
-    bruteforce:
-      priority:
-        level: 3
-        playercanchange: true
-      needs:
-        cpu: 90
-        ram: 90
-        gpu: 90
-        network: 40
-      workload:
-        reductions: null
-        crashbelowpercentage: 0.5
-        freezebelowpercentage: 0.7
-        bootslowerbypercentage: 0.2
-        cannotcalculateinput: '345'
   miner:
     priority:
       level: 2
-      playercanchange: true
+      playercanchangeonlevel: 1
     needs:
       cpu: 20
       ram: 30
@@ -78,3 +73,7 @@ services:
         freezebelowpercentage: 0.7
         bootslowerbypercentage: 0.2
         cannotcalculateinput: 0.75
+ui:
+  desktop:
+    maxiconsondesktop: '345'
+    playercanmoveitems: 'true'

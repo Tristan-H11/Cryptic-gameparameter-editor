@@ -6,6 +6,7 @@ import com.github.tristan_11.gameparameteryaml.model.YamlHandler;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeView;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,6 +29,9 @@ public class MainViewController implements Initializable {
     private JFXTreeView<?> treeView;
 
     @FXML
+    private Label savedToFileLabel;
+
+    @FXML
     private JFXTextField valueTextField;
 
     @FXML
@@ -48,16 +52,28 @@ public class MainViewController implements Initializable {
      * OnAction Methode, die aufgerufen wird, wenn der "Speichern"-Button gedrückt wird.
      * Nimmt sich die ValueMap, in der alle Daten zur RunTime stehen und gibt sie dem {@link YamlHandler} um
      * in die Datei zu schreiben.
+     *
      * @param event onActionEvent
      * @throws IOException
      */
     @FXML
     void saveDataToFile(ActionEvent event) throws IOException {
-        this.yamlDataHandler.writeMapToYaml(this.valueHandler.getValueMap(), DATAFILE_PATH);
+
+        Platform.runLater(
+                () -> {
+            try {
+                this.yamlDataHandler.writeMapToYaml(this.valueHandler.getValueMap(), DATAFILE_PATH);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            savedToFileLabel.setText("Erfolgreich gespeichert!");
+        });
+
     }
 
     /**
      * Wird augerufen, wenn ein Item im TreeView geklickt wird und lädt und setzt dann die Werte aus der Map(/Datei).
+     *
      * @param event
      */
     @FXML
@@ -81,6 +97,7 @@ public class MainViewController implements Initializable {
     /**
      * Initialize Methode.
      * Setzt die {@link YamlHandler}, sowie andere Handler und setzt den Listener für das Filterfeld.
+     *
      * @param location
      * @param resources
      */
@@ -104,7 +121,7 @@ public class MainViewController implements Initializable {
         });
 
         valueTextField.textProperty().addListener((obs, oldText, newText) -> {
-            if(!oldText.isEmpty()){
+            if (!oldText.isEmpty()) {
                 valueHandler.setNewValue(treeViewHandler.getPathToItem(), newText);
             }
         });

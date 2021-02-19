@@ -17,29 +17,60 @@ services:
   ssh:
     priority:
       level: 2
-      playercanchange:
+      playercanchangeonlevel: 5
     needs:
       cpu: 20
       ram: 30
-      gpu: 50
+      gpu: 50inc
       network: 10
-  hacking:
+    workload:
+      reductions:
+        crashbelowpercentage: 0.5
+        freezebelowpercentage: 0.7
+        bootslowerbypercentage: 0.2
+        cannotcalculateinput: 0.75
     portscan:
       priority:
         level: 4
-        playercanchange: false
+        playercanchangeonlevel: -1
       needs:
-        cpu: 10
+        cpu: '50'
         ram: 40
         gpu: 40
         network: 90
+      workload:
+        reductions:
+          crashbelowpercentage: 0.5
+          freezebelowpercentage: 0.7
+          bootslowerbypercentage: 0.2
+          cannotcalculateinput: 0.75
     bruteforce:
       priority:
         level: 3
-        playercanchange: true
+        playercanchangeonlevel: 1
       needs:
         cpu: 90
         ram: 90
         gpu: 90
         network: 40
-  miner: to be done
+      workload:
+        reductions:
+          crashbelowpercentage: 0.5
+          freezebelowpercentage: 0.7
+          bootslowerbypercentage: 0.2
+          cannotcalculateinput: 0.75
+  miner:
+    priority:
+      level: 2
+      playercanchangeonlevel: 1
+    needs:
+      cpu: 20
+      ram: 30
+      gpu: 50
+      network: 10
+    workload:
+      reductions:
+        crashbelowpercentage: 0.5
+        freezebelowpercentage: 0.7
+        bootslowerbypercentage: 0.2
+        cannotcalculateinput: 0.75

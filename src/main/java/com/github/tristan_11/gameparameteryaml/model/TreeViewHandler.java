@@ -62,7 +62,7 @@ public class TreeViewHandler {
             return baum;
         }
 
-        HashSet<Baum> appliedChildren = new HashSet<>();
+        ArrayList<Baum> appliedChildren = new ArrayList<>();
         Baum returner = null;
         for (Baum child : baum.getChildren()) {
             returner = applyFilter(child, filter);
