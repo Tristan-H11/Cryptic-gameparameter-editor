@@ -7,11 +7,9 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeView;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,7 +24,7 @@ public class MainViewController implements Initializable {
     public static final String DESCRIPTIONFILE_PATH = "description.yaml";
 
     @FXML
-    private JFXTreeView<?> treeView;
+    private JFXTreeView<String> treeView;
 
     @FXML
     private Label savedToFileLabel;
@@ -53,11 +51,9 @@ public class MainViewController implements Initializable {
      * Nimmt sich die ValueMap, in der alle Daten zur RunTime stehen und gibt sie dem {@link YamlHandler} um
      * in die Datei zu schreiben.
      *
-     * @param event onActionEvent
-     * @throws IOException
      */
     @FXML
-    void saveDataToFile(ActionEvent event) throws IOException {
+    void saveDataToFile() {
 
         Platform.runLater(
                 () -> {
@@ -72,12 +68,11 @@ public class MainViewController implements Initializable {
     }
 
     /**
-     * Wird augerufen, wenn ein Item im TreeView geklickt wird und lädt und setzt dann die Werte aus der Map(/Datei).
-     *
-     * @param event
+     * Wird aufgerufen, wenn ein Item im TreeView geklickt wird und lädt und setzt dann die Werte aus der Map(/Datei).
+
      */
     @FXML
-    void itemInTreeViewClicked(MouseEvent event) {
+    void itemInTreeViewClicked() {
         valueHandler.loadValues(treeViewHandler);
         setPath();
     }
@@ -88,18 +83,13 @@ public class MainViewController implements Initializable {
      */
     private void setPath() {
         StringBuilder sb = new StringBuilder();
-        treeViewHandler.getPathToItem().forEach(e -> {
-            sb.append("/").append(e);
-        });
+        treeViewHandler.getPathToItem().forEach(e -> sb.append("/").append(e));
         pathTextArea.setText(sb.toString());
     }
 
     /**
      * Initialize Methode.
      * Setzt die {@link YamlHandler}, sowie andere Handler und setzt den Listener für das Filterfeld.
-     *
-     * @param location
-     * @param resources
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -116,9 +106,7 @@ public class MainViewController implements Initializable {
 
         pathTextArea.setText("Waiting for path...");
 
-        filterField.textProperty().addListener((obs, oldText, newText) -> {
-            treeViewHandler.setData(filterField.getText());
-        });
+        filterField.textProperty().addListener((obs, oldText, newText) -> treeViewHandler.setData(filterField.getText()));
 
         valueTextField.textProperty().addListener((obs, oldText, newText) -> {
             if (!oldText.isEmpty()) {

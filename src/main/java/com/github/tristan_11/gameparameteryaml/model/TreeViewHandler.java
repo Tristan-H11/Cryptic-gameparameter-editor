@@ -11,14 +11,14 @@ import java.util.*;
  */
 public class TreeViewHandler {
     Baum baum;
-    JFXTreeView treeView;
+    JFXTreeView<String> treeView;
 
     /**
      * Konstruktor. Setzt die gegebenen Werte im Objekt.
      *
      * @param treeView Der TreeView, der gehandled wird.
      */
-    public TreeViewHandler(Map<String, Object> map, JFXTreeView<?> treeView) {
+    public TreeViewHandler(Map<String, Object> map, JFXTreeView<String> treeView) {
         this.treeView = treeView;
 
         this.baum = new Baum();
@@ -48,7 +48,7 @@ public class TreeViewHandler {
     }
 
     private TreeItem<String> baumToTreeItem(Baum baum){
-        TreeItem item = new TreeItem(baum.getName());
+        TreeItem<String> item = new TreeItem<>(baum.getName());
 
         for (Baum child : baum.getChildren()) {
             item.getChildren().add(baumToTreeItem(child));
@@ -63,7 +63,7 @@ public class TreeViewHandler {
         }
 
         ArrayList<Baum> appliedChildren = new ArrayList<>();
-        Baum returner = null;
+        Baum returner;
         for (Baum child : baum.getChildren()) {
             returner = applyFilter(child, filter);
             if (returner !=null) {
@@ -83,13 +83,14 @@ public class TreeViewHandler {
     /**
      * Bekommt die map aus der yaml übergeben und baut rekursiv bis auf variablen level das TreeItem runter.
      */
+    @SuppressWarnings("unchecked")
     private void mapToBaum(Map<String, Object> map, Baum baum) {
         map.forEach((s, o) -> {
             Baum treeItem = new Baum();
             treeItem.setName(s);
-            if (o instanceof Map) {
+            if (o instanceof Map)
                 this.mapToBaum((Map<String, Object>) o, treeItem);
-            }
+
             baum.getChildren().add(treeItem);
         });
     }
@@ -101,9 +102,9 @@ public class TreeViewHandler {
      */
     public ArrayList<String> getPathToItem() {
         ArrayList<String> pathElements = new ArrayList<>();
-        for (TreeItem item = (TreeItem) this.treeView.getSelectionModel().getSelectedItem();
-             item != null; item = (TreeItem) item.getParent()) {
-            pathElements.add(0, item.getValue().toString());
+        for (TreeItem<String> item = this.treeView.getSelectionModel().getSelectedItem();
+             item != null; item = item.getParent()) {
+            pathElements.add(0, item.getValue());
         }
         if(!pathElements.isEmpty()) {
             pathElements.remove(0);

@@ -12,6 +12,7 @@ import java.util.Map;
 /**
  * Geht mit den YAML-Dateien um und lädt sie. Stellt die geladenen Daten zur Verfügung.
  */
+@edu.umd.cs.findbugs.annotations.SuppressFBWarnings("DM_DEFAULT_ENCODING")
 public class YamlHandler {
 
     Map<String, Object> obj;
@@ -27,8 +28,6 @@ public class YamlHandler {
 
     /**
      * Konstruktor. Setzt den Filepath und lädt die Datei.
-     * @param filepath
-     * @throws IOException
      */
     public YamlHandler(String filepath) throws IOException {
         try (InputStream inputStream = new FileInputStream(filepath)) {
@@ -38,7 +37,6 @@ public class YamlHandler {
 
     /**
      * Gibt die geladenen Daten zurück.
-     * @return
      */
     public Map<String, Object> getResultsAsMap() {
         return obj;
@@ -48,7 +46,6 @@ public class YamlHandler {
      * Schreibt die übergebenen Daten in die Datei.
      * @param obj MapToWriteToFile
      * @param path PathToFile
-     * @throws IOException
      */
     public void writeMapToYaml(Map<String, Object> obj, String path) throws IOException {
         try (FileWriter writer = new FileWriter(path)) {
