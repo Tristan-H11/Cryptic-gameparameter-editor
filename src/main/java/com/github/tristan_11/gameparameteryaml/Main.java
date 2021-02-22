@@ -17,10 +17,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
 
         AnchorPane root = FXMLLoader.load(getClass().getResource("/view/mainView.fxml"));
-        Scene scene = new Scene(root, 1010, 530);
+        Scene scene = new Scene(root, 950, 470);
         scene.getStylesheets().add("style.css");
         primaryStage.setTitle("Cryptic gameparemter editor");
-        primaryStage.setResizable(true);
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

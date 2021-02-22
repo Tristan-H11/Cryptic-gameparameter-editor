@@ -3,13 +3,10 @@ package com.github.tristan_11.gameparameteryaml.controller;
 import com.github.tristan_11.gameparameteryaml.model.TreeViewHandler;
 import com.github.tristan_11.gameparameteryaml.model.ValueHandler;
 import com.github.tristan_11.gameparameteryaml.model.YamlHandler;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeView;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,19 +21,19 @@ public class MainViewController implements Initializable {
     public static final String DESCRIPTIONFILE_PATH = "description.yaml";
 
     @FXML
-    private JFXTreeView<String> treeView;
+    private TreeView<String> treeView;
 
     @FXML
     private Label savedToFileLabel;
 
     @FXML
-    private JFXTextField valueTextField;
+    private TextField valueTextField;
 
     @FXML
-    private JFXTextArea descriptionTextArea;
+    private TextArea descriptionTextArea;
 
     @FXML
-    private JFXTextField filterField;
+    private TextField filterField;
 
     @FXML
     private Label pathTextArea;
