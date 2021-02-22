@@ -1,8 +1,8 @@
 package com.github.tristan_11.gameparameteryaml.model;
 
 import com.github.tristan_11.gameparameteryaml.Baum;
-import com.jfoenix.controls.JFXTreeView;
 import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 
 import java.util.*;
 
@@ -11,14 +11,14 @@ import java.util.*;
  */
 public class TreeViewHandler {
     Baum baum;
-    JFXTreeView<String> treeView;
+    TreeView<String> treeView;
 
     /**
      * Konstruktor. Setzt die gegebenen Werte im Objekt.
      *
      * @param treeView Der TreeView, der gehandled wird.
      */
-    public TreeViewHandler(Map<String, Object> map, JFXTreeView<String> treeView) {
+    public TreeViewHandler(Map<String, Object> map, TreeView<String> treeView) {
         this.treeView = treeView;
 
         this.baum = new Baum();

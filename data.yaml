@@ -1,7 +1,7 @@
 device:
   filesystem:
     file:
-      filespacepertwentychars: 1 * 10^6
+      filespacepertwentychars: '14'
       maxcharsperfile: '64'
       maxelementsperlevel: '50'
       playercancreate: eventuell
@@ -45,7 +45,7 @@ services:
       cannotcalculateinput: 0.75
   bruteforce:
     priority:
-      level: 3
+      level: '17'
       playercanchangeonlevel: 1
     needs:
       cpu: 90

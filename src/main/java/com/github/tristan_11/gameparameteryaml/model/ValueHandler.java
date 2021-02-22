@@ -1,7 +1,7 @@
 package com.github.tristan_11.gameparameteryaml.model;
 
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 import java.util.List;
 import java.util.Map;
@@ -16,15 +16,14 @@ public class ValueHandler {
 
     YamlHandler yamlDataHandler;
     YamlHandler yamlDescriptionHandler;
-    JFXTextField valueTextField;
-    JFXTextArea descriptionTextArea;
+    TextField valueTextField;
+    TextArea descriptionTextArea;
 
     Map<String, Object> valueMap;
     Map<String, Object> descriptionMap;
 
     /**
      * Getter der ValueMap.
-     * @return
      */
     public Map<String, Object> getValueMap() {
         return valueMap;
@@ -35,10 +34,8 @@ public class ValueHandler {
      *
      * @param dataHandler         {@link YamlHandler} für die Werte der Spielparameter.
      * @param descriptionHandler  {@link YamlHandler} für die Werte der Spielparameter.
-     * @param valueTextField
-     * @param descriptionTextArea
      */
-    public ValueHandler(YamlHandler dataHandler, YamlHandler descriptionHandler, JFXTextField valueTextField, JFXTextArea descriptionTextArea) {
+    public ValueHandler(YamlHandler dataHandler, YamlHandler descriptionHandler, TextField valueTextField, TextArea descriptionTextArea) {
         this.yamlDataHandler = dataHandler;
         this.yamlDescriptionHandler = descriptionHandler;
         this.valueTextField = valueTextField;
@@ -66,7 +63,7 @@ public class ValueHandler {
      * @param path PathToSelectedItem
      * @param description TextArea to write in
      */
-    private void getDescriptionFromMap(Map<String, Object> map, List<String> path, JFXTextArea description) {
+    private void getDescriptionFromMap(Map<String, Object> map, List<String> path, TextArea description) {
         if (map.get(path.get(0)) instanceof Map) {
             map = (Map<String, Object>) map.get(path.get(0));
             if (path.size() > 1) path.remove(0);
@@ -83,7 +80,7 @@ public class ValueHandler {
      * @param path PathToSelectedItem
      * @param valueField TextField to write in
      */
-    private void getValuesFromMap(Map<String, Object> map, List<String> path, JFXTextField valueField) {
+    private void getValuesFromMap(Map<String, Object> map, List<String> path, TextField valueField) {
         if (map.get(path.get(0)) instanceof Map) {
             map = (Map<String, Object>) map.get(path.get(0));
             if (path.size() > 1) path.remove(0);
