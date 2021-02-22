@@ -15,6 +15,7 @@ repositories {
 dependencies {
     implementation group: 'com.jfoenix', name: 'jfoenix', version: '9.0.10'
     implementation group: 'org.yaml', name: 'snakeyaml', version: '1.27'
+    implementation 'com.github.spotbugs:spotbugs-annotations:4.0.1'
 }
 
 javafx {
