@@ -100,6 +100,7 @@ public class MainViewController implements Initializable {
         treeViewHandler.setData("");
         valueHandler = new ValueHandler(yamlDataHandler, yamlDescriptionHandler, valueTextField, descriptionTextArea);
         descriptionTextArea.setDisable(true);
+        descriptionTextArea.setWrapText(true);
 
         pathTextArea.setText("Waiting for path...");
 
