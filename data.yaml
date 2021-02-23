@@ -11,7 +11,7 @@ device:
 finance:
   initialmoneyonfirstwallet: '1000'
   wallet:
-    maxwalletamount: '3'
+    maxwalletamount: ''
 services:
   ssh:
     priority:
