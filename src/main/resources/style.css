@@ -1,5 +1,5 @@
 .root {
-    -fx-background-color: #ffffff;
+    -fx-background-color: #000000;
 }
 
 .button {
@@ -8,8 +8,18 @@
 }
 
 .button:hover {
-    -fx-background-color: #c6a4a4;
+    -fx-background-color: #2278b1;
     -fx-scale-y: 1.1;
+}
+
+.valueTextField{
+        -fx-text-fill: #9e7a04;
+}
+
+
+
+.descriptionTextArea{
+    -fx-text-fill: #9e7a04;
 }
 
 .button:pressed {
@@ -21,13 +31,13 @@
 .label {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-text-fill: #000000;
+    -fx-text-fill: #DBDBDB;
 }
 
 /* Das Label vom Path soll etwas unscheinbar sein. Daher der extra einbau */
 #pathLabel {
-    -fx-font-size: 50px;
-    -fx-text-fill: #d95e5e;
+    -fx-font-size: 15px;
+    -fx-text-fill: #2cc8dd;
 }
 
 /* Label für "erfolgreich gespeichert" unten rechts */
@@ -37,11 +47,11 @@
 
 /* Textfelder */
 .text-field{
-
+    -fx-text-fill: #000000;
 }
 
 .text-field:focused{
-    -fx-text-fill: #a92929;
+    -fx-text-fill: #000000;
 }
 
 .text-field:hover{
@@ -50,18 +60,19 @@
 
 /* TreeView */
 .tree-view {
-
+    -fx-background: #d6188d;
 }
-
+/* Tree Backround */
 .tree-cell {
-
+    -fx-background: #141414;
 }
 
 .tree-cell:selected {
-    -fx-background: #c17979;
-    -fx-text-fill: #ffffff;
+    -fx-background: #303030;
+    
 }
 
 .tree-cell:hover {
-    -fx-background: #d69b9b;
+    -fx-background: #0184ff;
 }
+
