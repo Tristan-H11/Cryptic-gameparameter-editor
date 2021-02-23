@@ -48,7 +48,7 @@ services:
       level: '17'
       playercanchangeonlevel: 1
     needs:
-      cpu: 90
+      cpu: '90'
       ram: 90
       gpu: 90
       network: 40
