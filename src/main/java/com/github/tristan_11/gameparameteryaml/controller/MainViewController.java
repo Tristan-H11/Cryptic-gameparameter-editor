@@ -3,10 +3,15 @@ package com.github.tristan_11.gameparameteryaml.controller;
 import com.github.tristan_11.gameparameteryaml.model.TreeViewHandler;
 import com.github.tristan_11.gameparameteryaml.model.ValueHandler;
 import com.github.tristan_11.gameparameteryaml.model.YamlHandler;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -61,6 +66,12 @@ public class MainViewController implements Initializable {
             }
             savedToFileLabel.setText("Erfolgreich gespeichert!");
         });
+
+        Timeline fiveSecondTimer = new Timeline(
+                new KeyFrame(Duration.seconds(5),
+                        event -> savedToFileLabel.setText("Speichern nicht vergessen")));
+        fiveSecondTimer.setCycleCount(1);
+        fiveSecondTimer.play();
 
     }
 
