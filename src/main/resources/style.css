@@ -12,14 +12,12 @@
     -fx-scale-y: 1.1;
 }
 
-.valueTextField{
+#valueTextField{
         -fx-text-fill: #9e7a04;
 }
 
-
-
-.descriptionTextArea{
-    -fx-text-fill: #9e7a04;
+#descriptionTextArea .content{
+    -fx-background-color: #72bc29;
 }
 
 .button:pressed {
