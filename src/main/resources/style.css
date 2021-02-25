@@ -1,28 +1,15 @@
 .root {
-    -fx-background-color: #151515;
+    -fx-background-color: #263238;
 }
 
 .button {
-    -fx-scale-y: 1.1;
-    -fx-text-fill: #000000;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-border-color: #4f5b62;
+    -fx-border-width: 2px;
 }
-
 .button:hover {
-    -fx-background-color: #2278b1;
-    -fx-scale-y: 1.1;
-}
-
-#valueTextField{
-        -fx-text-fill: #9e7a04;
-        -fx-background-color: #373737;
-}
-
-#descriptionTextArea{
-    -fx-text-fill: #efefef;
-}
-
-#descriptionTextArea .content{
-    -fx-background-color: #373737;
+    -fx-background-color: #4f5b62 ;
 }
 
 .button:pressed {
@@ -40,44 +27,120 @@
 /* Das Label vom Path soll etwas unscheinbar sein. Daher der extra einbau */
 #pathLabel {
     -fx-font-size: 15px;
-    -fx-text-fill: #2c6ddd;
+    -fx-text-fill: #4682e9;
 }
 
 /* Label für "erfolgreich gespeichert" unten rechts */
 
 #savedLabel{
-    -fx-text-fill: #f30303;
+    -fx-text-fill: #4682e9;
+}
+
+#valueTextField{
+    -fx-text-fill: #9e7a04;
+    -fx-background-color: #4f5b62;
+}
+
+#descriptionTextArea{
+    -fx-text-fill: #efefef;
+    -fx-focus-color: #4f5b62;
+    -fx-text-box-border: #4f5b62;
+}
+
+#descriptionTextArea .content{
+    -fx-background-color: #4f5b62;
+}
+#descriptionTextArea:focused{
+    -fx-focus-color: transparent;
+    -fx-background-insets: -1.4, 0, 1, 2;
 }
 
 /* Textfelder */
 .text-field{
     -fx-text-fill: #ffffff;
     -fx-font-size: 15px;
-    -fx-background-color: #373737;
+    -fx-background-color: #4f5b62;
 }
 
 .text-field:focused{
-    -fx-text-fill: #ff3636;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #4682e9;
+    -fx-border-width: 2px;
 }
 
 /* TreeView */
 .tree-view {
-    -fx-background-color: #282828;
+    -fx-background-color: #4f5b62;
     -fx-font-size: 15px;
-
+    -fx-border-width: 2px;
 }
-/* Tree Backround */
+
+/* Tree Background */
 .tree-cell {
-    -fx-background-color: #141414;
+    -fx-background-color: #4f5b62;
     -fx-text-fill: #ffffff;
 }
 
 .tree-cell:selected {
-    -fx-background-color: #303030;
+    -fx-background-color: #283a43;
     
 }
 
 .tree-cell:hover {
-    -fx-background-color: #0184ff;
+    -fx-background-color: #35484f;
 }
 
+/* Pretty Scrollbars copied from https://stackoverflow.com/a/48050208 */
+.scroll-bar {
+    -fx-font-size: 2px;
+}
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color : #4f5b62;
+    -fx-border-color : #4f5b62;
+    -fx-background-radius : 0.0em;
+    -fx-border-radius :1.0em;
+    -fx-fill-width: 1px;
+}
+
+.scroll-bar:horizontal .increment-button ,
+.scroll-bar:horizontal .decrement-button {
+    -fx-background-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 0.0 10.0 0.0;
+
+}
+
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 10.0 0.0 0.0;
+
+}
+
+ .scroll-bar .increment-arrow,
+ .scroll-bar .decrement-arrow{
+    -fx-shape : " ";
+    -fx-padding :0.15em 0.0;
+}
+
+ .scroll-bar:vertical .increment-arrow,
+ .scroll-bar:vertical .decrement-arrow{
+    -fx-shape : " ";
+    -fx-padding :0.0 0.15em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color :derive(black,90.0%);
+    -fx-background-insets : 2.0, 0.0, 0.0;
+    -fx-background-radius : 0em;
+}
+
+.scroll-bar:horizontal .thumb:hover,
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color :derive(#4D4C4F,10.0%);
+    -fx-background-insets : 2.0, 0.0, 0.0;
+    -fx-background-radius : 2.0em;
+}
