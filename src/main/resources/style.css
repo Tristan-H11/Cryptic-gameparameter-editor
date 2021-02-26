@@ -44,11 +44,13 @@
 #descriptionTextArea{
     -fx-text-fill: #efefef;
     -fx-focus-color: #4f5b62;
-    -fx-text-box-border: #4f5b62;
+    -fx-text-box-border: transparent;
+
 }
 
 #descriptionTextArea .content{
     -fx-background-color: #4f5b62;
+    -fx-background-radius: 0 ;
 }
 #descriptionTextArea:focused{
     -fx-focus-color: transparent;
@@ -60,6 +62,8 @@
     -fx-text-fill: #ffffff;
     -fx-font-size: 15px;
     -fx-background-color: #4f5b62;
+    -fx-border-color: #4f5b62;
+    -fx-border-width: 2px;
 }
 
 .text-field:focused{

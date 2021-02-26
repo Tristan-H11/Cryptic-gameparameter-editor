@@ -6,16 +6,23 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="470.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.tristan_11.gameparameteryaml.controller.MainViewController">
-   <BorderPane layoutX="-119.0" layoutY="111.0" prefHeight="470.0" prefWidth="950.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0">
-      <left>
-         <TreeView fx:id="treeView" onMouseReleased="#itemInTreeViewClicked" prefHeight="430.0" prefWidth="357.0" BorderPane.alignment="CENTER">
-            <BorderPane.margin>
-               <Insets bottom="9.0" right="50.0" top="2.0" />
-            </BorderPane.margin>
-         </TreeView>
-      </left>
-      <center>
-         <GridPane alignment="CENTER_RIGHT" prefHeight="350.0" prefWidth="561.0" BorderPane.alignment="CENTER">
+   <GridPane alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="470.0" prefWidth="950.0" vgap="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+     <columnConstraints>
+       <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="300.0" />
+       <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="75.0" />
+       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+     </columnConstraints>
+     <rowConstraints>
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+     </rowConstraints>
+      <children>
+         <TextField id=".textField" fx:id="filterField" prefHeight="38.0" prefWidth="358.0" promptText="Search.." />
+         <Button id=".button" alignment="CENTER" mnemonicParsing="false" onAction="#saveDataToFile" prefHeight="40.0" prefWidth="111.0" text="SAVE TO FILE" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+         <TreeView fx:id="treeView" onMouseReleased="#itemInTreeViewClicked" prefHeight="430.0" prefWidth="357.0" GridPane.rowIndex="1" />
+         <Label id="savedLabel" fx:id="savedToFileLabel" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="278.0" text="Please save!" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+         <GridPane alignment="CENTER_RIGHT" prefHeight="350.0" prefWidth="561.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
             <columnConstraints>
                <ColumnConstraints hgrow="NEVER" maxWidth="513.0" minWidth="437.0" prefWidth="513.0" />
                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="0.0" />
@@ -44,7 +51,7 @@
                </GridPane.margin>
             </Label>
             <TextField id=".textField" fx:id="valueTextField" promptText="Wating for parameter..." GridPane.rowIndex="2" GridPane.valignment="TOP" />
-            <TextArea fx:id="descriptionTextArea" prefHeight="196.0" prefWidth="459.0" text="Wating for parameter..." GridPane.rowIndex="4" GridPane.valignment="TOP">
+            <TextArea fx:id="descriptionTextArea" editable="false" prefHeight="196.0" prefWidth="459.0" text="Wating for parameter..." wrapText="true" GridPane.rowIndex="4" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -68,22 +75,6 @@
                </Label>
             </HBox>
          </GridPane>
-      </center>
-      <top>
-         <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="831.0" spacing="450.0" BorderPane.alignment="CENTER_LEFT">
-            <TextField id=".textField" fx:id="filterField" prefHeight="38.0" prefWidth="358.0" promptText="Search..">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </TextField>
-            <Button id=".button" alignment="CENTER" mnemonicParsing="false" onAction="#saveDataToFile" prefHeight="40.0" prefWidth="111.0" text="SAVE TO FILE" textAlignment="CENTER" />
-         </HBox>
-      </top>
-      <opaqueInsets>
-         <Insets />
-      </opaqueInsets>
-      <bottom>
-         <Label id="savedLabel" fx:id="savedToFileLabel" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="278.0" text="Please save!" textAlignment="CENTER" BorderPane.alignment="BOTTOM_RIGHT" />
-      </bottom>
-   </BorderPane>
+      </children>
+   </GridPane>
 </AnchorPane>
