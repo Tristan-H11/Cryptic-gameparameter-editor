@@ -17,7 +17,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
 
         AnchorPane root = FXMLLoader.load(getClass().getResource("/view/mainView.fxml"));
-        Scene scene = new Scene(root, 950, 470);
+        Scene scene = new Scene(root, 900, 470);
         scene.getStylesheets().add("style.css");
         primaryStage.setTitle("YAML-Editor");
         primaryStage.setResizable(false);

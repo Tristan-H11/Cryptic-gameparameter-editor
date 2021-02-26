@@ -87,7 +87,7 @@
 
 .tree-cell:selected {
     -fx-background-color: #283a43;
-    
+
 }
 
 .tree-cell:hover {
