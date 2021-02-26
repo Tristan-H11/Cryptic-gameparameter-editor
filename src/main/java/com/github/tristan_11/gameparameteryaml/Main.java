@@ -20,7 +20,7 @@ public class Main extends Application {
         Scene scene = new Scene(root, 900, 470);
         scene.getStylesheets().add("style.css");
         primaryStage.setTitle("YAML-Editor");
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

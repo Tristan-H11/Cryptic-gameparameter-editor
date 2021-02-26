@@ -54,7 +54,6 @@ public class TreeViewHandler {
 
     private TreeItem<String> baumToTreeItem(Baum baum){
         TreeItem<String> item = new TreeItem<>(baum.getName());
-
         for (Baum child : baum.getChildren()) {
             if(expandEverything) item.setExpanded(true);
             item.getChildren().add(baumToTreeItem(child));

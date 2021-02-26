@@ -115,6 +115,12 @@ public class MainViewController implements Initializable {
 
         pathTextArea.setText("Waiting for path...");
 
+        treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null && newValue != oldValue){
+                valueTextField.setEditable(newValue.getChildren().isEmpty());
+            }
+        });
+
         filterField.textProperty().addListener((obs, oldText, newText) -> {
             treeViewHandler.setExpandEverything(!oldText.isEmpty() && !newText.isEmpty());
             treeViewHandler.setData(filterField.getText());
