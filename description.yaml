@@ -74,3 +74,67 @@ services:
         freezebelowpercentage: 0.7
         bootslowerbypercentage: 0.2
         cannotcalculateinput: 0.75
+mainboard:
+  id101:
+    general:
+      name: 'dummyValue'
+      formfactor: 'dummyValue'
+      cpusocket: 'dummyValue'
+      coretemperaturecontrol: 'dummyValue'
+      usbports: 'dummyValue'
+    ram:
+      slots: 'dummyValue'
+      maxsizec: 'dummyValue'
+      type: 'dummyValue'
+      frequency: 'dummyValue'
+    onboardgpu:
+      name: 'dummyValue'
+      vramsize: 'dummyValue'
+      frequency: 'dummyValue'
+      powerpoints: 'dummyValue'
+    expansionslots:
+      interface: 'dummyValue'
+      slots: 'dummyValue'
+    diskstorage:
+      diskslots: 'dummyValue'
+      interface: 'dummyValue'
+    networkport:
+      onboard: 'dummyValue'
+      powerpoints: 'dummyValue'
+      name: 'dummyValue'
+      interface: 'dummyValue'
+      speed: 'dummyValue'
+    powerusage: 'dummyValue'
+    price: 'dummyValue'
+  id102:
+    general:
+      name: 'dummyValue'
+      formfactor: 'dummyValue'
+      cpusocket: 'dummyValue'
+      coretemperaturecontrol: 'dummyValue'
+      usbports: 'dummyValue'
+    ram:
+      slots: 'dummyValue'
+      maxsizec: 'dummyValue'
+      type: 'dummyValue'
+      frequency: 'dummyValue'
+    onboardgpu:
+      name: 'dummyValue'
+      vramsize: 'dummyValue'
+      frequency: 'dummyValue'
+      powerpoints: 'dummyValue'
+    expansionslots:
+      interface: 'dummyValue'
+      slots: 'dummyValue'
+    diskstorage:
+      diskslots: 'dummyValue'
+      interface: 'dummyValue'
+    networkport:
+      onboard: 'dummyValue'
+      powerpoints: 'dummyValue'
+      name: 'dummyValue'
+      interface: 'dummyValue'
+      speed: 'dummyValue'
+    powerusage: 'dummyValue'
+    price: 'dummyValue'
+
