@@ -6,15 +6,17 @@ import com.github.tristan_11.gameparameteryaml.model.YamlHandler;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TreeView;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
@@ -52,20 +54,19 @@ public class MainViewController implements Initializable {
      * OnAction Methode, die aufgerufen wird, wenn der "Speichern"-Button gedrückt wird.
      * Nimmt sich die ValueMap, in der alle Daten zur RunTime stehen und gibt sie dem {@link YamlHandler} um
      * in die Datei zu schreiben.
-     *
      */
     @FXML
     void saveDataToFile() {
 
         Platform.runLater(
                 () -> {
-            try {
-                this.yamlDataHandler.writeMapToYaml(this.valueHandler.getValueMap(), DATAFILE_PATH);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            savedToFileLabel.setText("Saved!");
-        });
+                    try {
+                        this.yamlDataHandler.writeMapToYaml(this.valueHandler.getValueMap(), DATAFILE_PATH);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    savedToFileLabel.setText("Saved!");
+                });
 
         Timeline fiveSecondTimer = new Timeline(
                 new KeyFrame(Duration.seconds(5),
@@ -77,7 +78,6 @@ public class MainViewController implements Initializable {
 
     /**
      * Wird aufgerufen, wenn ein Item im TreeView geklickt wird und lädt und setzt dann die Werte aus der Map(/Datei).
-
      */
     @FXML
     void itemInTreeViewClicked() {
@@ -117,9 +117,14 @@ public class MainViewController implements Initializable {
 
         filterField.textProperty().addListener((obs, oldText, newText) -> treeViewHandler.setData(filterField.getText()));
 
+        // Listener for changes in value-textfield
         valueTextField.textProperty().addListener((obs, oldText, newText) -> {
-            if (!oldText.isEmpty()) {
-                valueHandler.setNewValue(treeViewHandler.getPathToItem(), newText);
+            if(treeView.getSelectionModel().getSelectedItem() != null) {
+                if (!(treeView.getSelectionModel().getSelectedItem().getChildren() instanceof Map)) {
+                    if (!oldText.isEmpty()) {
+                        valueHandler.setNewValue(treeViewHandler.getPathToItem(), newText);
+                    }
+                }
             }
         });
 

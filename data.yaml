@@ -1,7 +1,7 @@
 device:
   filesystem:
     file:
-      filespacepertwentychars: '14'
+      filespacepertwentychars: '19'
       maxcharsperfile: '64'
       maxelementsperlevel: '50'
       playercancreate: eventuell

@@ -19,7 +19,7 @@ public class Main extends Application {
         AnchorPane root = FXMLLoader.load(getClass().getResource("/view/mainView.fxml"));
         Scene scene = new Scene(root, 950, 470);
         scene.getStylesheets().add("style.css");
-        primaryStage.setTitle("Cryptic gameparemter editor");
+        primaryStage.setTitle("YAML-Editor");
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
