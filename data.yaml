@@ -7,73 +7,191 @@ device:
       playercancreate: eventuell
     folder:
       playercancreate: 'true'
-    maxelementsoverall: be
+    maxelementsoverall: '500'
 finance:
   initialmoneyonfirstwallet: '1000'
   wallet:
     maxwalletamount: ''
-services:
-  ssh:
-    priority:
-      level: 2
-      playercanchangeonlevel: 5
-    needs:
-      cpu: 20
-      ram: 30
-      gpu: 50inc
-      network: 10
-    workload:
-      reductions:
-        crashbelowpercentage: 0.5
-        freezebelowpercentage: 0.7
-        bootslowerbypercentage: 0.2
-        cannotcalculateinput: 0.75
-  portscan:
-    priority:
-      level: 4
-      playercanchangeonlevel: -1
-    needs:
-      cpu: '50'
-      ram: 40
-      gpu: 40
-      network: 90
-    workload:
-      reductions:
-        crashbelowpercentage: 0.5
-        freezebelowpercentage: 0.7
-        bootslowerbypercentage: 0.2
-      cannotcalculateinput: 0.75
-  bruteforce:
-    priority:
-      level: '17'
-      playercanchangeonlevel: 1
-    needs:
-      cpu: '90'
-      ram: 90
-      gpu: 90
-      network: 40
-    workload:
-      reductions:
-        crashbelowpercentage: 0.5
-        freezebelowpercentage: 0.7
-        bootslowerbypercentage: 0.2
-        cannotcalculateinput: 0.75
-  miner:
-    priority:
-      level: 2
-      playercanchangeonlevel: 1
-    needs:
-      cpu: 20
-      ram: 30
-      gpu: 50
-      network: 10
-    workload:
-      reductions:
-        crashbelowpercentage: 0.5
-        freezebelowpercentage: 0.7
-        bootslowerbypercentage: 0.2
-        cannotcalculateinput: 0.75
 ui:
   desktop:
     maxiconsondesktop: '345'
     playercanmoveitems: 'true'
+process:
+  os:
+    morphos1:
+      workload:
+        priority:
+          level: '1'
+          playercanchange: '-1'
+        bootneeds:
+          cpu: dummyValue
+          gpu: dummyValue
+          ram: dummyValue
+          network: dummyValue
+        reduction:
+          boottime:
+            crashonstartfactor: dummyValue
+            crashonactivefactor: dummyValue
+        levelneeds:
+          processamount1: dummyValue
+          processamount2: dummyValue
+          processamount3: dummyValue
+          default:
+            cpu: dummyValue
+            gpu: dummyValue
+            ram: dummyValue
+            network: dummyValue
+          level1:
+            cpu: dummyValue
+            gpu: dummyValue
+            ram: dummyValue
+            network: dummyValue
+          level2:
+            cpu: dummyValue
+            gpu: dummyValue
+            ram: dummyValue
+            network: dummyValue
+          level3:
+            cpu: dummyValue
+            gpu: dummyValue
+            ram: dummyValue
+            network: dummyValue
+        shutdown:
+          cpu: dummyValue
+          gpu: dummyValue
+          ram: dummyValue
+          network: dummyValue
+          boottime:
+            crashonshutdownfactor: dummyValue
+      boot:
+        boottime: 30s
+        shutdowntime: dummyValue
+      processamount:
+        maxbackground: dummyValue
+        maxcalculate: dummyValue
+        maxutility: dummyValue
+        maxautostart: dummyValue
+      beginnautostart: dummyValue
+  background:
+    ssh:
+      minoslevel: dummyValue
+      workload:
+        priority:
+          level: '3'
+          playercanchange: '1'
+        bootneeds:
+          cpu: dummyValue
+          gpu: dummyValue
+          ram: dummyValue
+          network: dummyValue
+        reduction:
+          boottime:
+            crashonstartfactor: dummyValue
+            crashonactivefactor: dummyValue
+            crashonshutdownfactor: dummyValue
+            pausebootfactor: dummyValue
+            pauseshutdownfactor: dummyValue
+          percentage:
+            crashonstart: dummyValue
+            crashonactive: dummyValue
+            crashonshutdown: dummyValue
+            pauseboot: dummyValue
+            pauseshutdown: dummyValue
+            inefficient: dummyValue
+            doesntrespond: dummyValue
+        levelneeds:
+          activeconnections1: dummyValue
+          activeconnections2: dummyValue
+          activeconnections3: dummyValue
+          default:
+            cpu: dummyValue
+            gpu: dummyValue
+            ram: dummyValue
+            network: dummyValue
+          level1:
+            cpu: dummyValue
+            gpu: dummyValue
+            ram: dummyValue
+            network: dummyValue
+          level2:
+            cpu: dummyValue
+            gpu: dummyValue
+            ram: dummyValue
+            network: dummyValue
+          level3:
+            cpu: dummyValue
+            gpu: dummyValue
+            ram: dummyValue
+            network: dummyValue
+        shutdownneeds:
+          cpu: dummyValue
+          gpu: dummyValue
+          ram: dummyValue
+          network: dummyValue
+        boottime: dummyValue
+        shutdowntime: dummyValue
+      maxlogsize: dummyValue
+      maxconnections: dummyValue
+    telnet:
+      minoslevel: dummyValue
+      workload:
+        priority:
+          level: '3'
+          playercanchange: '1'
+        bootneeds:
+          cpu: dummyValue
+          gpu: dummyValue
+          ram: dummyValue
+          network: dummyValue
+        reduction:
+          boottime:
+            crashonstartfactor: dummyValue
+            crashonactivefactor: dummyValue
+            crashonshutdownfactor: dummyValue
+            pausebootfactor: dummyValue
+            pauseshutdownfactor: dummyValue
+          percentage:
+            crashonstart: dummyValue
+            crashonactive: dummyValue
+            crashonshutdown: dummyValue
+            pauseboot: dummyValue
+            pauseshutdown: dummyValue
+            inefficient: dummyValue
+            doesntrespond: dummyValue
+        levelneeds:
+          activeconnections1: dummyValue
+          activeconnections2: dummyValue
+          activeconnections3: dummyValue
+          default:
+            cpu: dummyValue
+            gpu: dummyValue
+            ram: dummyValue
+            network: dummyValue
+          level1:
+            cpu: dummyValue
+            gpu: dummyValue
+            ram: dummyValue
+            network: dummyValue
+          level2:
+            cpu: dummyValue
+            gpu: dummyValue
+            ram: dummyValue
+            network: dummyValue
+          level3:
+            cpu: dummyValue
+            gpu: dummyValue
+            ram: dummyValue
+            network: dummyValue
+        shutdownneeds:
+          cpu: dummyValue
+          gpu: dummyValue
+          ram: dummyValue
+          network: dummyValue
+        boottime: dummyValue
+        shutdowntime: dummyValue
+      maxlogsize: dummyValue
+      maxconnections: dummyValue
+  calculate:
+    dummy: value
+  utility:
+    dummy: value

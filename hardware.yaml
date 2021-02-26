@@ -70,3 +70,8 @@ cpu:
     cores: 'dummyValue'
     turbospeed: 'dummyValue'
     overclock: 'dummyValue'
+cpufan:
+  dummy: 'value'
+ram:
+  dummy: 'value'
+
