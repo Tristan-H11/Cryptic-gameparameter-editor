@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
  */
 public class MainViewController implements Initializable {
 
-    public static final String DATAFILE_PATH = "data.yaml";
+    public static final String DATAFILE_PATH = "hardware.yaml";
     public static final String DESCRIPTIONFILE_PATH = "description.yaml";
 
     @FXML
@@ -115,7 +115,10 @@ public class MainViewController implements Initializable {
 
         pathTextArea.setText("Waiting for path...");
 
-        filterField.textProperty().addListener((obs, oldText, newText) -> treeViewHandler.setData(filterField.getText()));
+        filterField.textProperty().addListener((obs, oldText, newText) -> {
+            treeViewHandler.setExpandEverything(!oldText.isEmpty() && !newText.isEmpty());
+            treeViewHandler.setData(filterField.getText());
+        });
 
         // Listener for changes in value-textfield
         valueTextField.textProperty().addListener((obs, oldText, newText) -> {

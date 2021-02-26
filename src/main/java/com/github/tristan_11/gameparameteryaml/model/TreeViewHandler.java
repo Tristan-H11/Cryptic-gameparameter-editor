@@ -12,6 +12,8 @@ import java.util.*;
 public class TreeViewHandler {
     Baum baum;
     TreeView<String> treeView;
+    boolean expandEverything;
+
 
     /**
      * Konstruktor. Setzt die gegebenen Werte im Objekt.
@@ -25,6 +27,9 @@ public class TreeViewHandler {
         mapToBaum(map, baum);
     }
 
+    public void setExpandEverything(boolean expandEverything) {
+        this.expandEverything = expandEverything;
+    }
 
     /**
      * Setzt den Tree. Bekommt den Filter übergeben und holt sich die Daten aus der Yaml.
@@ -51,6 +56,7 @@ public class TreeViewHandler {
         TreeItem<String> item = new TreeItem<>(baum.getName());
 
         for (Baum child : baum.getChildren()) {
+            if(expandEverything) item.setExpanded(true);
             item.getChildren().add(baumToTreeItem(child));
         }
         return item;
@@ -88,7 +94,7 @@ public class TreeViewHandler {
         map.forEach((s, o) -> {
             Baum treeItem = new Baum();
             treeItem.setName(s);
-            if (o instanceof Map)
+            if (o instanceof Map )
                 this.mapToBaum((Map<String, Object>) o, treeItem);
 
             baum.getChildren().add(treeItem);
@@ -112,3 +118,4 @@ public class TreeViewHandler {
         return pathElements;
     }
 }
+
