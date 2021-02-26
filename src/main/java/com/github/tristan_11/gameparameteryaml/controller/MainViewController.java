@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
  */
 public class MainViewController implements Initializable {
 
-    public static final String DATAFILE_PATH = "hardware.yaml";
+    public static final String DATAFILE_PATH = "data.yaml";
     public static final String DESCRIPTIONFILE_PATH = "description.yaml";
 
     @FXML
