@@ -7,7 +7,6 @@ device:
       playercancreate: eventuell
     folder:
       playercancreate: 'true'
-      maxelementsoverall: '500'
 finance:
   initialmoneyonfirstwallet: '1000'
   wallet:

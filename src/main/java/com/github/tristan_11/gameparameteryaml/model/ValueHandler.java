@@ -14,13 +14,13 @@ import java.util.Map;
  */
 public class ValueHandler {
 
-    YamlHandler yamlDataHandler;
-    YamlHandler yamlDescriptionHandler;
-    TextField valueTextField;
-    TextArea descriptionTextArea;
+    final YamlHandler yamlDataHandler;
+    final YamlHandler yamlDescriptionHandler;
+    final TextField valueTextField;
+    final TextArea descriptionTextArea;
 
-    Map<String, Object> valueMap;
-    Map<String, Object> descriptionMap;
+    final Map<String, Object> valueMap;
+    final Map<String, Object> descriptionMap;
 
     /**
      * Getter der ValueMap.
@@ -63,6 +63,7 @@ public class ValueHandler {
      * @param path PathToSelectedItem
      * @param description TextArea to write in
      */
+    @SuppressWarnings("unchecked")
     private void getDescriptionFromMap(Map<String, Object> map, List<String> path, TextArea description) {
         if (map.get(path.get(0)) instanceof Map) {
             map = (Map<String, Object>) map.get(path.get(0));
@@ -80,6 +81,7 @@ public class ValueHandler {
      * @param path PathToSelectedItem
      * @param valueField TextField to write in
      */
+    @SuppressWarnings("unchecked")
     private void getValuesFromMap(Map<String, Object> map, List<String> path, TextField valueField) {
         if (map.get(path.get(0)) instanceof Map) {
             map = (Map<String, Object>) map.get(path.get(0));

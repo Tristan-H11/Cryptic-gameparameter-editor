@@ -30,6 +30,6 @@ public class Main extends Application {
     }
 }
 
-// ToDo: Config für die Config. Auf Typen prüfen. Descriptionleave in eine Map ändern
+// ToDo: Config für die Config. Auf Typen prüfen. DescriptionLeave in eine Map ändern
 // ToDo: checkInput Function vorm SaveToMap mit Meldung an den Nutzer
 // ToDo: Tests?

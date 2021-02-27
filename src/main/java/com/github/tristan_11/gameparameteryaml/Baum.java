@@ -5,7 +5,7 @@ import java.util.*;
 public class Baum {
 
     String name = "";
-    ArrayList<Baum> childList;
+    final ArrayList<Baum> childList;
 
     public Baum() {
         childList = new ArrayList<>();

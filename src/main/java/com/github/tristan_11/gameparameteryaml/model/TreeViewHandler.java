@@ -10,8 +10,8 @@ import java.util.*;
  * Handler für den TreeView. Bastelt alles um den TreeView und holt sich oder bekommt die entsprechenden Sachen.
  */
 public class TreeViewHandler {
-    Baum rootBaum;
-    TreeView<String> treeView;
+    final Baum rootBaum;
+    final TreeView<String> treeView;
     boolean expandEverything;
 
 
