@@ -1,15 +1,15 @@
 package com.github.tristan_11.gameparameteryaml.model;
 
 import com.github.tristan_11.gameparameteryaml.Baum;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 
 /**
- * Handler für den TreeView. Bastelt alles um den TreeView und holt sich oder bekommt die entsprechenden Sachen.
+ * Handler für den TreeView. Bastelt alles um den TreeView und holt sich
+ * oder bekommt die entsprechenden Sachen.
  */
 public class TreeViewHandler {
     final Baum rootBaum;
@@ -56,7 +56,9 @@ public class TreeViewHandler {
     private TreeItem<String> baumToTreeItem(Baum baum) {
         TreeItem<String> item = new TreeItem<>(baum.getName());
         for (Baum child : baum.getChildren()) {
-            if (expandEverything) item.setExpanded(true);
+            if (expandEverything) {
+                item.setExpanded(true);
+            }
             item.getChildren().add(baumToTreeItem(child));
         }
         return item;
@@ -87,22 +89,24 @@ public class TreeViewHandler {
 
 
     /**
-     * Bekommt die map aus der yaml übergeben und baut rekursiv bis auf variablen level das TreeItem runter.
+     * Bekommt die map aus der yaml übergeben und baut rekursiv bis auf Variablen-level
+     * das TreeItem runter.
      */
     @SuppressWarnings("unchecked")
     private void mapToBaum(Map<String, Object> map, Baum baum) {
         map.forEach((s, o) -> {
             Baum treeItem = new Baum();
             treeItem.setName(s);
-            if (o instanceof Map)
+            if (o instanceof Map) {
                 this.mapToBaum((Map<String, Object>) o, treeItem);
+            }
 
             baum.getChildren().add(treeItem);
         });
     }
 
     /**
-     * Gibt eine Liste<String> mit den Parents von 1stLevel->leave zurück. (Exklusive Root)
+     * Gibt eine Liste von Strings mit den Parents von 1stLevel zu leave zurück. (Exklusive Root)
      *
      * @return {@link List} pathElements
      */

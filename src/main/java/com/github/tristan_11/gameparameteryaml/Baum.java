@@ -1,11 +1,14 @@
 package com.github.tristan_11.gameparameteryaml;
 
-import java.util.*;
+import java.util.ArrayList;
 
+/**
+ * Implementation einer Baumstruktur.
+ */
 public class Baum {
 
-    String name = "";
     final ArrayList<Baum> childList;
+    String name = "";
 
     public Baum() {
         childList = new ArrayList<>();
@@ -27,12 +30,17 @@ public class Baum {
         this.childList.addAll(children);
     }
 
-    public int getLeavesBelow(){
+    public int getLeavesBelow() {
         return getLeavesBelow(this);
     }
 
-    public int getLeavesBelow(Baum baum){
-        if(baum == null) return 0;
+    /**
+     * Gibt die Anzahl an Leaves ab eingeschlossen dieser Node zurück.
+     */
+    public int getLeavesBelow(Baum baum) {
+        if (baum == null) {
+            return 0;
+        }
         if (baum.getChildren().isEmpty()) {
             return 1;
         } else {

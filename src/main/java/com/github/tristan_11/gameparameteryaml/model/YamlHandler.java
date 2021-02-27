@@ -1,13 +1,12 @@
 package com.github.tristan_11.gameparameteryaml.model;
 
-import org.yaml.snakeyaml.DumperOptions;
-import org.yaml.snakeyaml.Yaml;
-
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
+import org.yaml.snakeyaml.DumperOptions;
+import org.yaml.snakeyaml.Yaml;
 
 /**
  * Geht mit den YAML-Dateien um und lädt sie. Stellt die geladenen Daten zur Verfügung.
@@ -15,15 +14,15 @@ import java.util.Map;
 @edu.umd.cs.findbugs.annotations.SuppressFBWarnings("DM_DEFAULT_ENCODING")
 public class YamlHandler {
 
-    Map<String, Object> obj;
     private static final Yaml YAML;
-
 
     static {
         DumperOptions dumperOptions = new DumperOptions();
         dumperOptions.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
         YAML = new Yaml(dumperOptions);
     }
+
+    Map<String, Object> obj;
 
 
     /**
@@ -44,7 +43,8 @@ public class YamlHandler {
 
     /**
      * Schreibt die übergebenen Daten in die Datei.
-     * @param obj MapToWriteToFile
+     *
+     * @param obj  MapToWriteToFile
      * @param path PathToFile
      */
     public void writeMapToYaml(Map<String, Object> obj, String path) throws IOException {

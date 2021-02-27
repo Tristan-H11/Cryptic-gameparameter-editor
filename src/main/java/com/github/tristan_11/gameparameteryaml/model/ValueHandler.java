@@ -1,16 +1,16 @@
 package com.github.tristan_11.gameparameteryaml.model;
 
+import java.util.List;
+import java.util.Map;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * Behandelt alles, was außer {@link TreeViewHandler} und {@link YamlHandler} anfällt.
- * Darunter fällt das Auslesen der Beschreibungen und Werte aus den Datei-Maps und schreiben an die geforderte Stelle.
- * Außerdem ist der {@link ValueHandler} dafür verantwortlich, die in der GUI geänderten Werte in die valueMap zu schreiben
- * und bei Knopfdruck zum speichern an den {@link YamlHandler} zu geben.
+ * Darunter fällt das Auslesen der Beschreibungen und Werte aus den Datei-Maps und
+ * schreiben an die geforderte Stelle.  Außerdem ist der {@link ValueHandler} dafür verantwortlich,
+ * die in der GUI geänderten Werte in die valueMap zu schreiben und bei Knopfdruck zum Speichern
+ * an den {@link YamlHandler} zu geben.
  */
 public class ValueHandler {
 
@@ -23,19 +23,14 @@ public class ValueHandler {
     final Map<String, Object> descriptionMap;
 
     /**
-     * Getter der ValueMap.
-     */
-    public Map<String, Object> getValueMap() {
-        return valueMap;
-    }
-
-    /**
-     * Konstruktor. Setzt nur alle Werte in dem ValueHandler, um sie später richtig nutzen zu können.
+     * Konstruktor. Setzt nur alle Werte in dem ValueHandler, um sie später richtig
+     * nutzen zu können.
      *
-     * @param dataHandler         {@link YamlHandler} für die Werte der Spielparameter.
-     * @param descriptionHandler  {@link YamlHandler} für die Werte der Spielparameter.
+     * @param dataHandler        {@link YamlHandler} für die Werte der Spielparameter.
+     * @param descriptionHandler {@link YamlHandler} für die Werte der Spielparameter.
      */
-    public ValueHandler(YamlHandler dataHandler, YamlHandler descriptionHandler, TextField valueTextField, TextArea descriptionTextArea) {
+    public ValueHandler(YamlHandler dataHandler, YamlHandler descriptionHandler,
+                        TextField valueTextField, TextArea descriptionTextArea) {
         this.yamlDataHandler = dataHandler;
         this.yamlDescriptionHandler = descriptionHandler;
         this.valueTextField = valueTextField;
@@ -45,47 +40,66 @@ public class ValueHandler {
     }
 
     /**
+     * Getter der ValueMap.
+     */
+    public Map<String, Object> getValueMap() {
+        return valueMap;
+    }
+
+    /**
      * Lädt die Values in den und die Beschreibung in die entsprechenden TextAreas in der GUI.
+     *
      * @param treeViewHandler Tree, dessen Leave-Daten geladen werden sollen.
      */
     public void loadValues(TreeViewHandler treeViewHandler) {
         List<String> path = treeViewHandler.getPathToItem();
         if (!path.isEmpty()) {
-            getDescriptionFromMap(descriptionMap, treeViewHandler.getPathToItem(), descriptionTextArea);
-            getValuesFromMap(valueMap, treeViewHandler.getPathToItem(), valueTextField); //dunno why, but first call seems
+            getDescriptionFromMap(descriptionMap, treeViewHandler.getPathToItem(),
+                descriptionTextArea);
+            getValuesFromMap(valueMap, treeViewHandler.getPathToItem(),
+                valueTextField); //dunno why, but first call seems
             //to manipulate path variable in second call, so is just get a new one
         }
     }
 
     /**
      * Lädt die Beschreibung eines Parameters aus der entsprechenden Map.
-     * @param map DescriptionMap
-     * @param path PathToSelectedItem
+     *
+     * @param map         DescriptionMap
+     * @param path        PathToSelectedItem
      * @param description TextArea to write in
      */
     @SuppressWarnings("unchecked")
-    private void getDescriptionFromMap(Map<String, Object> map, List<String> path, TextArea description) {
+    private void getDescriptionFromMap(Map<String, Object> map, List<String> path,
+                                       TextArea description) {
         if (map.get(path.get(0)) instanceof Map) {
             map = (Map<String, Object>) map.get(path.get(0));
-            if (path.size() > 1) path.remove(0);
+            if (path.size() > 1) {
+                path.remove(0);
+            }
             getDescriptionFromMap(map, path, description);
         } else {
-            if (map.containsKey(path.get(0)) && !(map.get(path.get(0)) instanceof Map))
+            if (map.containsKey(path.get(0)) && !(map.get(path.get(0)) instanceof Map)) {
                 description.setText(map.get(path.get(0)).toString());
+            }
         }
     }
 
     /**
      * Lädt die Beschreibung eines Parameters aus der entsprechenden Map.
-     * @param map ValueMap
-     * @param path PathToSelectedItem
+     *
+     * @param map        ValueMap
+     * @param path       PathToSelectedItem
      * @param valueField TextField to write in
      */
     @SuppressWarnings("unchecked")
-    private void getValuesFromMap(Map<String, Object> map, List<String> path, TextField valueField) {
+    private void getValuesFromMap(Map<String, Object> map, List<String> path,
+                                  TextField valueField) {
         if (map.get(path.get(0)) instanceof Map) {
             map = (Map<String, Object>) map.get(path.get(0));
-            if (path.size() > 1) path.remove(0);
+            if (path.size() > 1) {
+                path.remove(0);
+            }
             getValuesFromMap(map, path, valueField);
         } else {
             if (map.containsKey(path.get(0)) && !(map.get(path.get(0)) instanceof Map)) {
@@ -95,8 +109,9 @@ public class ValueHandler {
     }
 
     /**
-     * Setzt den geänderten Wert aus der GUI in die ValueMap
-     * @param path PathToChangedItem
+     * Setzt den geänderten Wert aus der GUI in die ValueMap.
+     *
+     * @param path     PathToChangedItem
      * @param newValue NewValue
      */
     @SuppressWarnings("unchecked")

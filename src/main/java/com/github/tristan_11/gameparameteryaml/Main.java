@@ -1,13 +1,12 @@
 package com.github.tristan_11.gameparameteryaml;
 
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 /**
  * Main. Punkt.
@@ -17,6 +16,10 @@ public class Main extends Application {
 
     public static Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 
     @Override
@@ -29,10 +32,6 @@ public class Main extends Application {
         primaryStage.setResizable(true);
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
 

@@ -4,6 +4,10 @@ import com.github.tristan_11.gameparameteryaml.Main;
 import com.github.tristan_11.gameparameteryaml.model.TreeViewHandler;
 import com.github.tristan_11.gameparameteryaml.model.ValueHandler;
 import com.github.tristan_11.gameparameteryaml.model.YamlHandler;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Map;
+import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -16,71 +20,61 @@ import javafx.scene.control.TreeView;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.Map;
-import java.util.ResourceBundle;
-
 /**
  * Controller für den MainView. Fängt alles ab, was in der GUI passiert.
  */
 public class MainViewController implements Initializable {
 
-    public static String datafilePath = null;
     public static final String DESCRIPTIONFILE_PATH = "description.yaml";
-
-    @FXML
-    private TreeView<String> treeView;
-
-    @FXML
-    private Label savedToFileLabel;
-
-    @FXML
-    private Label leaveCountLabel;
-
-    @FXML
-    private TextField valueTextField;
-
-    @FXML
-    private TextArea descriptionTextArea;
-
-    @FXML
-    private TextField filterField;
-
-    @FXML
-    private Label pathTextArea;
-
+    public static String datafilePath = null;
     TreeViewHandler treeViewHandler;
     ValueHandler valueHandler;
     YamlHandler yamlDataHandler;
     YamlHandler yamlDescriptionHandler;
+    @FXML
+    private TreeView<String> treeView;
+    @FXML
+    private Label savedToFileLabel;
+    @FXML
+    private Label leaveCountLabel;
+    @FXML
+    private TextField valueTextField;
+    @FXML
+    private TextArea descriptionTextArea;
+    @FXML
+    private TextField filterField;
+    @FXML
+    private Label pathTextArea;
 
     /**
      * OnAction Methode, die aufgerufen wird, wenn der "Speichern"-Button gedrückt wird.
-     * Nimmt sich die ValueMap, in der alle Daten zur RunTime stehen und gibt sie dem {@link YamlHandler} um
+     * Nimmt sich die ValueMap, in der alle Daten zur RunTime stehen und gibt sie
+     * dem {@link YamlHandler} um
      * in die Datei zu schreiben.
      */
     @FXML
     void saveDataToFile() {
         Platform.runLater(
-                () -> {
-                    try {
-                        this.yamlDataHandler.writeMapToYaml(this.valueHandler.getValueMap(), datafilePath);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    savedToFileLabel.setText("Saved!");
-                });
+            () -> {
+                try {
+                    this.yamlDataHandler
+                        .writeMapToYaml(this.valueHandler.getValueMap(), datafilePath);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                savedToFileLabel.setText("Saved!");
+            });
 
         Timeline fiveSecondTimer = new Timeline(
-                new KeyFrame(Duration.seconds(5),
-                        event -> savedToFileLabel.setText("Please save!")));
+            new KeyFrame(Duration.seconds(5),
+                event -> savedToFileLabel.setText("Please save!")));
         fiveSecondTimer.setCycleCount(1);
         fiveSecondTimer.play();
     }
 
     /**
-     * Wird aufgerufen, wenn ein Item im TreeView geklickt wird und lädt und setzt dann die Werte aus der Map(/Datei).
+     * Wird aufgerufen, wenn ein Item im TreeView geklickt wird und lädt und setzt dann die
+     * Werte aus der Map(/Datei).
      */
     @FXML
     void itemInTreeViewClicked() {
@@ -100,26 +94,27 @@ public class MainViewController implements Initializable {
 
     /**
      * Initialize Methode.
-     * Setzt die {@link YamlHandler}, sowie andere Handler und setzt den Listener für das Filterfeld.
+     * Setzt die {@link YamlHandler}, sowie andere Handler und setzt den Listener für das
+     * Filterfeld.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
-        setGUIComponents();
+        setGuiComponents();
         createListeners();
 
     }
 
     @FXML
-    private void loadFileButtonAction(){
+    private void loadFileButtonAction() {
         openFileChooser();
         valueTextField.setDisable(false);
         filterField.setDisable(false);
         treeView.setDisable(false);
         loadFiles();
         initializeTreeView();
-        valueHandler = new ValueHandler(yamlDataHandler, yamlDescriptionHandler, valueTextField, descriptionTextArea);
+        valueHandler = new ValueHandler(yamlDataHandler, yamlDescriptionHandler, valueTextField,
+            descriptionTextArea);
 
     }
 
@@ -136,11 +131,12 @@ public class MainViewController implements Initializable {
     }
 
     private void createListeners() {
-        treeView.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
-            if(newValue != null && newValue != oldValue){
-                valueTextField.setEditable(newValue.getChildren().isEmpty());
-            }
-        });
+        treeView.getSelectionModel().selectedItemProperty()
+            .addListener((obs, oldValue, newValue) -> {
+                if (newValue != null && newValue != oldValue) {
+                    valueTextField.setEditable(newValue.getChildren().isEmpty());
+                }
+            });
 
         filterField.textProperty().addListener((obs, oldText, newText) -> {
             treeViewHandler.setExpandEverything(!oldText.isEmpty() && !newText.isEmpty());
@@ -149,8 +145,9 @@ public class MainViewController implements Initializable {
 
         // Listener for changes in value-textfield
         valueTextField.textProperty().addListener((obs, oldText, newText) -> {
-            if(treeView.getSelectionModel().getSelectedItem() != null) {
-                if (!(treeView.getSelectionModel().getSelectedItem().getChildren() instanceof Map)) {
+            if (treeView.getSelectionModel().getSelectedItem() != null) {
+                if (!(treeView.getSelectionModel().getSelectedItem()
+                    .getChildren() instanceof Map)) {
                     if (!oldText.isEmpty()) {
                         valueHandler.setNewValue(treeViewHandler.getPathToItem(), newText);
                     }
@@ -159,11 +156,11 @@ public class MainViewController implements Initializable {
         });
     }
 
-    private void setGUIComponents() {
+    private void setGuiComponents() {
         descriptionTextArea.setDisable(false);
         descriptionTextArea.setWrapText(true);
 
-        if(datafilePath == null){
+        if (datafilePath == null) {
             valueTextField.setDisable(true);
             filterField.setDisable(true);
             treeView.setDisable(true);
