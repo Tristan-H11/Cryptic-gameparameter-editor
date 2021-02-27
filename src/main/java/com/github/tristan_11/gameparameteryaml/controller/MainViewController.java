@@ -111,6 +111,7 @@ public class MainViewController implements Initializable {
         valueTextField.setDisable(false);
         filterField.setDisable(false);
         treeView.setDisable(false);
+        descriptionTextArea.setDisable(false);
         loadFiles();
         initializeTreeView();
         valueHandler = new ValueHandler(yamlDataHandler, yamlDescriptionHandler, valueTextField,
@@ -164,6 +165,7 @@ public class MainViewController implements Initializable {
             valueTextField.setDisable(true);
             filterField.setDisable(true);
             treeView.setDisable(true);
+            descriptionTextArea.setDisable(true);
         }
     }
 
