@@ -18,7 +18,6 @@
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
       </rowConstraints>
       <TextField id=".textField" fx:id="filterField" prefHeight="38.0" prefWidth="358.0" promptText="Search.." />
-      <Button id=".button" alignment="CENTER" mnemonicParsing="false" onAction="#saveDataToFile" prefHeight="40.0" prefWidth="111.0" text="SAVE TO FILE" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
       <TreeView fx:id="treeView" onMouseReleased="#itemInTreeViewClicked" prefHeight="430.0" prefWidth="357.0" GridPane.rowIndex="1" />
       <Label id="savedLabel" fx:id="savedToFileLabel" alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="278.0" text="Please save!" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
       <Label fx:id="leaveCountLabel" prefHeight="30.0" prefWidth="171.0" text="Leavecount:" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
@@ -75,5 +74,12 @@
             </Label>
          </HBox>
       </GridPane>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="2"
+            GridPane.halignment="RIGHT">
+         <Button alignment="CENTER" mnemonicParsing="false" onAction="#loadFileButtonAction" prefHeight="53.0"
+                 prefWidth="83.0" text="LOAD FILE"/>
+         <Button id=".button" alignment="CENTER" mnemonicParsing="false" onAction="#saveDataToFile" prefHeight="40.0"
+                 prefWidth="111.0" text="SAVE TO FILE" textAlignment="CENTER"/>
+      </HBox>
    </GridPane>
 </AnchorPane>

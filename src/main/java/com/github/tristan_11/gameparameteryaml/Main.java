@@ -13,9 +13,15 @@ import java.io.IOException;
  * Main. Punkt.
  */
 public class Main extends Application {
+    private static Stage primaryStage;
+
+    public static Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
     @Override
     public void start(Stage primaryStage) throws IOException {
-
+        Main.primaryStage = primaryStage;
         AnchorPane root = FXMLLoader.load(getClass().getResource("/view/mainView.fxml"));
         Scene scene = new Scene(root, 900, 470);
         scene.getStylesheets().add("style.css");

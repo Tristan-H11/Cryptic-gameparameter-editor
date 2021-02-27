@@ -4,7 +4,9 @@ import com.github.tristan_11.gameparameteryaml.Baum;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Handler für den TreeView. Bastelt alles um den TreeView und holt sich oder bekommt die entsprechenden Sachen.
@@ -40,10 +42,9 @@ public class TreeViewHandler {
 
         TreeItem<String> rootItem;
         Baum filteredBaum = applyFilter(rootBaum, filter);
-        if (filteredBaum==null) {
+        if (filteredBaum == null) {
             rootItem = new TreeItem<>("");
-        }
-        else {
+        } else {
             rootItem = baumToTreeItem(filteredBaum);
         }
 
@@ -52,10 +53,10 @@ public class TreeViewHandler {
         treeView.setShowRoot(false);
     }
 
-    private TreeItem<String> baumToTreeItem(Baum baum){
+    private TreeItem<String> baumToTreeItem(Baum baum) {
         TreeItem<String> item = new TreeItem<>(baum.getName());
         for (Baum child : baum.getChildren()) {
-            if(expandEverything) item.setExpanded(true);
+            if (expandEverything) item.setExpanded(true);
             item.getChildren().add(baumToTreeItem(child));
         }
         return item;
@@ -63,7 +64,7 @@ public class TreeViewHandler {
 
     private Baum applyFilter(Baum baum, String filter) {
 
-        if(baum.getName().contains(filter)){
+        if (baum.getName().contains(filter)) {
             return baum;
         }
 
@@ -71,11 +72,11 @@ public class TreeViewHandler {
         Baum returner;
         for (Baum child : baum.getChildren()) {
             returner = applyFilter(child, filter);
-            if (returner !=null) {
+            if (returner != null) {
                 appliedChildren.add(returner);
             }
         }
-        if(appliedChildren.isEmpty()){
+        if (appliedChildren.isEmpty()) {
             return null;
         }
         returner = new Baum();
@@ -93,7 +94,7 @@ public class TreeViewHandler {
         map.forEach((s, o) -> {
             Baum treeItem = new Baum();
             treeItem.setName(s);
-            if (o instanceof Map )
+            if (o instanceof Map)
                 this.mapToBaum((Map<String, Object>) o, treeItem);
 
             baum.getChildren().add(treeItem);
@@ -111,14 +112,14 @@ public class TreeViewHandler {
              item != null; item = item.getParent()) {
             pathElements.add(0, item.getValue());
         }
-        if(!pathElements.isEmpty()) {
+        if (!pathElements.isEmpty()) {
             pathElements.remove(0);
         }
         return pathElements;
     }
 
     public int getLeaveCount() {
-       return rootBaum.getLeavesBelow();
+        return rootBaum.getLeavesBelow();
     }
 }
 

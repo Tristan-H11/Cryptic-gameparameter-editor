@@ -1,7 +1,7 @@
 mainboard:
   id101:
     general:
-      name: dummyValue
+      name: Zeus X128
       formfactor: dummyValue
       cpusocket: dummyValue
       coretemperaturecontrol: dummyValue

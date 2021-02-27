@@ -1,5 +1,6 @@
 package com.github.tristan_11.gameparameteryaml.controller;
 
+import com.github.tristan_11.gameparameteryaml.Main;
 import com.github.tristan_11.gameparameteryaml.model.TreeViewHandler;
 import com.github.tristan_11.gameparameteryaml.model.ValueHandler;
 import com.github.tristan_11.gameparameteryaml.model.YamlHandler;
@@ -12,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeView;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -24,7 +26,7 @@ import java.util.ResourceBundle;
  */
 public class MainViewController implements Initializable {
 
-    public static final String DATAFILE_PATH = "data.yaml";
+    public static String datafilePath = null;
     public static final String DESCRIPTIONFILE_PATH = "description.yaml";
 
     @FXML
@@ -60,11 +62,10 @@ public class MainViewController implements Initializable {
      */
     @FXML
     void saveDataToFile() {
-
         Platform.runLater(
                 () -> {
                     try {
-                        this.yamlDataHandler.writeMapToYaml(this.valueHandler.getValueMap(), DATAFILE_PATH);
+                        this.yamlDataHandler.writeMapToYaml(this.valueHandler.getValueMap(), datafilePath);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -76,7 +77,6 @@ public class MainViewController implements Initializable {
                         event -> savedToFileLabel.setText("Please save!")));
         fiveSecondTimer.setCycleCount(1);
         fiveSecondTimer.play();
-
     }
 
     /**
@@ -104,22 +104,39 @@ public class MainViewController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            yamlDataHandler = new YamlHandler(DATAFILE_PATH);
-            yamlDescriptionHandler = new YamlHandler(DESCRIPTIONFILE_PATH);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+
+        setGUIComponents();
+        createListeners();
+
+    }
+
+    @FXML
+    private void loadFileButtonAction(){
+        openFileChooser();
+        valueTextField.setDisable(false);
+        filterField.setDisable(false);
+        treeView.setDisable(false);
+        loadFiles();
+        initializeTreeView();
+        valueHandler = new ValueHandler(yamlDataHandler, yamlDescriptionHandler, valueTextField, descriptionTextArea);
+
+    }
+
+    private void openFileChooser() {
+        FileChooser fileChooser = new FileChooser();
+        datafilePath = fileChooser.showOpenDialog(Main.getPrimaryStage()).getAbsolutePath();
+    }
+
+    private void initializeTreeView() {
         treeViewHandler = new TreeViewHandler(yamlDataHandler.getResultsAsMap(), this.treeView);
         treeViewHandler.setData("");
-        valueHandler = new ValueHandler(yamlDataHandler, yamlDescriptionHandler, valueTextField, descriptionTextArea);
-        descriptionTextArea.setDisable(false);
-        descriptionTextArea.setWrapText(true);
-
         leaveCountLabel.setText("Leaves: " + treeViewHandler.getLeaveCount());
         pathTextArea.setText("Waiting for path...");
+    }
 
-        treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+    private void createListeners() {
+        treeView.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
             if(newValue != null && newValue != oldValue){
                 valueTextField.setEditable(newValue.getChildren().isEmpty());
             }
@@ -140,6 +157,25 @@ public class MainViewController implements Initializable {
                 }
             }
         });
+    }
 
+    private void setGUIComponents() {
+        descriptionTextArea.setDisable(false);
+        descriptionTextArea.setWrapText(true);
+
+        if(datafilePath == null){
+            valueTextField.setDisable(true);
+            filterField.setDisable(true);
+            treeView.setDisable(true);
+        }
+    }
+
+    private void loadFiles() {
+        try {
+            yamlDataHandler = new YamlHandler(datafilePath);
+            yamlDescriptionHandler = new YamlHandler(DESCRIPTIONFILE_PATH);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
