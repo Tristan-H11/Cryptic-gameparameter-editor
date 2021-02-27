@@ -34,6 +34,9 @@ public class MainViewController implements Initializable {
     private Label savedToFileLabel;
 
     @FXML
+    private Label leaveCountLabel;
+
+    @FXML
     private TextField valueTextField;
 
     @FXML
@@ -113,6 +116,7 @@ public class MainViewController implements Initializable {
         descriptionTextArea.setDisable(false);
         descriptionTextArea.setWrapText(true);
 
+        leaveCountLabel.setText("Leaves: " + treeViewHandler.getLeaveCount());
         pathTextArea.setText("Waiting for path...");
 
         treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {

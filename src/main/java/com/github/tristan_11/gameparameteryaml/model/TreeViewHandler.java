@@ -10,7 +10,7 @@ import java.util.*;
  * Handler für den TreeView. Bastelt alles um den TreeView und holt sich oder bekommt die entsprechenden Sachen.
  */
 public class TreeViewHandler {
-    Baum baum;
+    Baum rootBaum;
     TreeView<String> treeView;
     boolean expandEverything;
 
@@ -23,8 +23,8 @@ public class TreeViewHandler {
     public TreeViewHandler(Map<String, Object> map, TreeView<String> treeView) {
         this.treeView = treeView;
 
-        this.baum = new Baum();
-        mapToBaum(map, baum);
+        this.rootBaum = new Baum();
+        mapToBaum(map, rootBaum);
     }
 
     public void setExpandEverything(boolean expandEverything) {
@@ -39,7 +39,7 @@ public class TreeViewHandler {
     public void setData(String filter) {
 
         TreeItem<String> rootItem;
-        Baum filteredBaum = applyFilter(baum, filter);
+        Baum filteredBaum = applyFilter(rootBaum, filter);
         if (filteredBaum==null) {
             rootItem = new TreeItem<>("");
         }
@@ -115,6 +115,10 @@ public class TreeViewHandler {
             pathElements.remove(0);
         }
         return pathElements;
+    }
+
+    public int getLeaveCount() {
+       return rootBaum.getLeavesBelow();
     }
 }
 
