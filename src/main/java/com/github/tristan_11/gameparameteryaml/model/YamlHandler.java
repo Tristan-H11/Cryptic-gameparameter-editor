@@ -26,11 +26,19 @@ public class YamlHandler {
 
 
     /**
-     * Konstruktor. Setzt den Filepath und lädt die Datei.
+     *  Konstruktor. Lädt die Datei mit einem InputStream.
      */
-    public YamlHandler(String filepath) throws IOException {
-        try (InputStream inputStream = new FileInputStream(filepath)) {
-            obj = YAML.load(inputStream);
+    public YamlHandler(InputStream is) throws IOException {
+        obj = YAML.load(is);
+        is.close();
+    }
+
+    /**
+     * Konstruktor. Lädt die Datei mit einem Path.
+     */
+    public YamlHandler(String path) throws IOException {
+        try (InputStream is = new FileInputStream(path)) {
+            obj = YAML.load(is);
         }
     }
 

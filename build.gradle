@@ -25,5 +25,6 @@ javafx {
 
 
 application {
-    mainClassName = 'com.github.tristan_11.gameparameteryaml.Main'
+    mainClassName = 'com.github.tristan_11.gameparameteryaml.FakeMain'
 }
+

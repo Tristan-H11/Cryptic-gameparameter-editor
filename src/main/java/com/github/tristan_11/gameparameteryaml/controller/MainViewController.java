@@ -25,8 +25,7 @@ import javafx.util.Duration;
  */
 public class MainViewController implements Initializable {
 
-    public static final String DESCRIPTIONFILE_PATH = "description.yaml";
-    public static String datafilePath = null;
+    private static String datafilePath = null;
     TreeViewHandler treeViewHandler;
     ValueHandler valueHandler;
     YamlHandler yamlDataHandler;
@@ -172,7 +171,7 @@ public class MainViewController implements Initializable {
     private void loadFiles() {
         try {
             yamlDataHandler = new YamlHandler(datafilePath);
-            yamlDescriptionHandler = new YamlHandler(DESCRIPTIONFILE_PATH);
+            yamlDescriptionHandler = new YamlHandler(Main.getDescriptionFileStream());
         } catch (IOException e) {
             e.printStackTrace();
         }

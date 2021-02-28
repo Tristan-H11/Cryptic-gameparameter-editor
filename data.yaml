@@ -8,7 +8,7 @@ device:
     folder:
       playercancreate: 'true'
 finance:
-  initialmoneyonfirstwallet: '1000'
+  initialmoneyonfirstwallet: '100'
   wallet:
     maxwalletamount: ''
 ui:
